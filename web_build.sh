@@ -1,10 +1,6 @@
 #!/bin/bash
 
-# 옵션 파싱
-if [[ "$1" == "--clean" ]]; then
-  echo "🧹 Running flutter clean..."
-  flutter clean
-fi
+flutter/bin/flutter build web --release
 
 # build_runner 실행
 echo "🔧 Running build_runner..."
