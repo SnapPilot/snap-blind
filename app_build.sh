@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -e
+export PATH="$PATH:$PWD/flutter/bin"
+
 # 옵션 파싱
 if [[ "$1" == "--clean" ]]; then
   echo "🧹 Running flutter clean..."
