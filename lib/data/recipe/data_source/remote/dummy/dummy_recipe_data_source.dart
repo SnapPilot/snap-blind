@@ -8,7 +8,7 @@ import 'package:snap_blind/data/recipe/dto/remote/dummy/dummy_recipe_res_dto.dar
 part 'dummy_recipe_data_source.g.dart';
 
 @RestApi(baseUrl: "https://dummyjson.com", callAdapter: ResultCallAdapter)
-abstract class DummyRecipeDataSource {
+abstract interface class DummyRecipeDataSource {
   factory DummyRecipeDataSource(
     Dio dio, {
     String baseUrl,

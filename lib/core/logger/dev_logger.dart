@@ -4,7 +4,7 @@ import 'package:logger/logger.dart';
 import 'app_logger.dart';
 
 @LazySingleton(as: AppLogger, env: [Environment.dev])
-class DevLogger extends AppLogger {
+class DevLogger implements AppLogger {
   final _logger = Logger();
 
   @override

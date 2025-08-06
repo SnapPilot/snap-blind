@@ -5,7 +5,7 @@ import 'app_logger.dart';
 
 // app TODO: 실제 로깅 환경 셋팅
 @LazySingleton(as: AppLogger, env: [Environment.prod])
-class ProdLogger extends AppLogger {
+class ProdLogger implements AppLogger {
   final Logger _logger = Logger();
 
   @override

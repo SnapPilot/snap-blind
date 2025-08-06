@@ -1,6 +1,6 @@
 import 'package:snap_blind/core/error/result.dart';
 
-abstract class CallAdapter<R, T> {
+abstract interface class CallAdapter<R, T> {
   T adapt(R Function() call);
 }
 
