@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:snap_blind/core/logger/app_logger.dart';
 
-import '../di/di_config.dart';
+import '../di/di.dart';
 
 abstract final class ErrorHandler {
   static void handleFlutterError(FlutterErrorDetails details) {

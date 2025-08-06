@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:snap_blind/core/logger/app_logger.dart';
 
-import '../../core/di/di_config.dart';
+import '../../core/di/di.dart';
 
 abstract base class BaseBloc<E, S> extends Bloc<E, S> {
   BaseBloc(super.initialState);

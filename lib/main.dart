@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:snap_blind/core/error/error_handler.dart';
 
-import 'core/di/di_config.dart';
+import 'core/di/di.dart';
 import 'presenter/home/home_screen.dart';
 
 void main() {
