@@ -3,7 +3,9 @@ import 'package:snap_blind/core/logger/app_logger.dart';
 
 import '../di/di_config.dart';
 
-class ErrorHandler {
+abstract class ErrorHandler {
+  ErrorHandler._();
+
   static void handleFlutterError(FlutterErrorDetails details) {
     FlutterError.presentError(details);
   }
