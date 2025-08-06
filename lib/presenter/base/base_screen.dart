@@ -4,7 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:snap_blind/presenter/base/base_state.dart';
 
 @immutable
-abstract class BaseScreen<
+abstract base class BaseScreen<
   B extends StateStreamableSource<S>,
   S extends BaseState
 >

@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-abstract class BaseState extends Equatable {
+abstract base class BaseState extends Equatable {
   const BaseState({this.stateType, this.errorMessage});
 
   final BaseStateType? stateType;

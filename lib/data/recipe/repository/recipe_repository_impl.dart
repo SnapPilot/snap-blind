@@ -8,7 +8,7 @@ import 'package:snap_blind/domain/recipe/entity/recipe_entity.dart';
 import 'package:snap_blind/domain/recipe/repository/recipe_repository.dart';
 
 @LazySingleton(as: RecipeRepository)
-class RecipeRemoteRepositoryImpl implements RecipeRepository {
+final class RecipeRemoteRepositoryImpl implements RecipeRepository {
   RecipeRemoteRepositoryImpl({required this.recipeApi});
 
   final DummyRecipeDataSource recipeApi;

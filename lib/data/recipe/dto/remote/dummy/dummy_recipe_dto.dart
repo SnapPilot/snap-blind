@@ -5,7 +5,7 @@ import '../../../../../domain/recipe/entity/recipe_entity.dart';
 part 'dummy_recipe_dto.g.dart';
 
 @JsonSerializable()
-class DummyRecipeDto {
+final class DummyRecipeDto {
   DummyRecipeDto({
     required this.id,
     required this.name,

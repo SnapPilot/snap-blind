@@ -9,7 +9,7 @@ import 'package:snap_blind/domain/recipe/repository/recipe_repository.dart';
 ///  해당 프로젝트에서는 예시용
 
 @injectable
-class GetRecipes {
+final class GetRecipes {
   GetRecipes({required this.repository});
 
   final RecipeRepository repository;

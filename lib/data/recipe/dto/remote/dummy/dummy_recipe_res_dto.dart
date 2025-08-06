@@ -4,7 +4,7 @@ import 'package:snap_blind/data/recipe/dto/remote/dummy/dummy_recipe_dto.dart';
 part 'dummy_recipe_res_dto.g.dart';
 
 @JsonSerializable()
-class DummyRecipeResDto {
+final class DummyRecipeResDto {
   DummyRecipeResDto({
     required this.recipes,
     required this.total,

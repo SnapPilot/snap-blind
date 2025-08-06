@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'dummy_recipe_req_dto.g.dart';
 
 @JsonSerializable()
-class DummyRecipeReqDto {
+final class DummyRecipeReqDto {
   DummyRecipeReqDto({
     required this.limit,
     required this.skip,

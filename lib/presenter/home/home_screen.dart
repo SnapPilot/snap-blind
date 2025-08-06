@@ -10,7 +10,7 @@ import 'package:snap_blind/presenter/theme/app_text.dart';
 import '../../domain/recipe/entity/recipe_entity.dart';
 import '../base/base_state.dart';
 
-class HomeScreen extends BaseScreen<RecipeBloc, RecipeState> {
+final class HomeScreen extends BaseScreen<RecipeBloc, RecipeState> {
   const HomeScreen({super.key});
 
   @override
@@ -82,7 +82,7 @@ class HomeScreen extends BaseScreen<RecipeBloc, RecipeState> {
   }
 }
 
-class _FeaturedList extends StatelessWidget {
+final class _FeaturedList extends StatelessWidget {
   const _FeaturedList();
 
   @override
@@ -138,7 +138,7 @@ class _FeaturedList extends StatelessWidget {
   }
 }
 
-class _CategoryArea extends StatelessWidget {
+final class _CategoryArea extends StatelessWidget {
   const _CategoryArea();
 
   @override
@@ -192,7 +192,7 @@ class _CategoryArea extends StatelessWidget {
   }
 }
 
-class _PopularRecipeArea extends StatelessWidget {
+final class _PopularRecipeArea extends StatelessWidget {
   const _PopularRecipeArea();
 
   @override

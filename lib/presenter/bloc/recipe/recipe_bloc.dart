@@ -11,7 +11,7 @@ import 'package:snap_blind/presenter/bloc/recipe/recipe_event.dart';
 import 'recipe_state.dart';
 
 @injectable
-class RecipeBloc extends BaseBloc<RecipeEvent, RecipeState> {
+final class RecipeBloc extends BaseBloc<RecipeEvent, RecipeState> {
   RecipeBloc(this._recipeUseCase) : super(const RecipeState()) {
     on<RecipeRequestedEvent>(_onLoadRecipes);
   }
