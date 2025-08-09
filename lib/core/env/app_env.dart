@@ -10,12 +10,19 @@ final class AppEnv {
 
   final AppLogger _appLogger = getIt<AppLogger>();
 
+  late final String _supabaseHostUrl;
+  String get supabaseHostUrl => _supabaseHostUrl;
+
   late final String _supabaseApiKey;
   String get supabaseApiKey => _supabaseApiKey;
 
   Future<void> init() async {
     await dotenv.load(fileName: 'env/.env');
 
+    _supabaseHostUrl = dotenv.get(
+      'SUPABASE_HOST_URL',
+      fallback: 'https://antkaamjavartdpwczbr.supabase.co',
+    );
     _supabaseApiKey = dotenv.get('SUPABASE_API_KEY', fallback: '');
 
     if (_supabaseApiKey.isEmpty) {

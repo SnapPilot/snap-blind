@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:snap_blind/core/env/app_env.dart';
 import 'package:snap_blind/core/error/error_handler.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'core/di/di.dart';
 import 'presenter/home/home_screen.dart';
@@ -20,6 +21,10 @@ void main() {
     PlatformDispatcher.instance.onError =
         ErrorHandler.handlePlatformDispatcherError;
 
+    Supabase.initialize(
+      url: AppEnv().supabaseHostUrl,
+      anonKey: AppEnv().supabaseApiKey,
+    );
     runApp(const MyApp());
   }, ErrorHandler.handleUncaughtError);
 }
