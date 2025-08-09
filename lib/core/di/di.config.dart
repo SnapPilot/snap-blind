@@ -16,10 +16,10 @@ import 'package:snap_blind/core/di/register_module.dart' as _i407;
 import 'package:snap_blind/core/logger/app_logger.dart' as _i382;
 import 'package:snap_blind/core/logger/dev_logger.dart' as _i1066;
 import 'package:snap_blind/core/logger/prod_logger.dart' as _i1068;
-import 'package:snap_blind/data/recipe/data_source/remote/dummy/dummy_recipe_data_source.dart'
-    as _i60;
 import 'package:snap_blind/data/recipe/repository/recipe_repository_impl.dart'
     as _i784;
+import 'package:snap_blind/data/recipe/source/remote/dummy/dummy_recipe_data_source.dart'
+    as _i190;
 import 'package:snap_blind/domain/recipe/repository/recipe_repository.dart'
     as _i73;
 import 'package:snap_blind/domain/recipe/use_case/recipe_use_case.dart'
@@ -42,17 +42,17 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i1066.DevLogger(),
       registerFor: {_dev},
     );
-    gh.lazySingleton<_i60.DummyRecipeDataSource>(
+    gh.lazySingleton<_i190.DummyRecipeDataSource>(
       () => registerModule.recipeApi(gh<_i361.Dio>()),
-    );
-    gh.lazySingleton<_i73.RecipeRepository>(
-      () => _i784.RecipeRemoteRepositoryImpl(
-        recipeApi: gh<_i60.DummyRecipeDataSource>(),
-      ),
     );
     gh.lazySingleton<_i382.AppLogger>(
       () => _i1068.ProdLogger(),
       registerFor: {_prod},
+    );
+    gh.lazySingleton<_i73.RecipeRepository>(
+      () => _i784.RecipeRemoteRepositoryImpl(
+        recipeApi: gh<_i190.DummyRecipeDataSource>(),
+      ),
     );
     gh.factory<_i833.GetRecipes>(
       () => _i833.GetRecipes(repository: gh<_i73.RecipeRepository>()),
