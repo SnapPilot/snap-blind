@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:snap_blind/core/env/app_env.dart';
 import 'package:snap_blind/core/error/error_handler.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'core/di/di.dart';
 import 'presenter/home/home_screen.dart';
@@ -11,12 +13,18 @@ import 'presenter/home/home_screen.dart';
 void main() {
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
+
     configureDependencies(kReleaseMode ? Environment.prod : Environment.dev);
+    await AppEnv().init();
 
     FlutterError.onError = ErrorHandler.handleFlutterError;
     PlatformDispatcher.instance.onError =
         ErrorHandler.handlePlatformDispatcherError;
 
+    Supabase.initialize(
+      url: AppEnv().supabaseHostUrl,
+      anonKey: AppEnv().supabaseApiKey,
+    );
     runApp(const MyApp());
   }, ErrorHandler.handleUncaughtError);
 }
