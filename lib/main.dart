@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:snap_blind/core/env/app_env.dart';
 import 'package:snap_blind/core/error/error_handler.dart';
 
 import 'core/di/di.dart';
@@ -11,7 +12,9 @@ import 'presenter/home/home_screen.dart';
 void main() {
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
+
     configureDependencies(kReleaseMode ? Environment.prod : Environment.dev);
+    await AppEnv().init();
 
     FlutterError.onError = ErrorHandler.handleFlutterError;
     PlatformDispatcher.instance.onError =
