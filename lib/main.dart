@@ -1,30 +1,36 @@
 import 'dart:async';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:snap_blind/core/env/app_env.dart';
-import 'package:snap_blind/core/error/error_handler.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'core/di/di.dart';
+import 'core/env/app_env.dart';
+import 'core/error/error_handler.dart';
 import 'presenter/home/home_screen.dart';
+
+import 'core/env/mobile_env.dart'
+    if (dart.library.html) 'core/env/web_env.dart';
 
 void main() {
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
 
     configureDependencies(kReleaseMode ? Environment.prod : Environment.dev);
-    await AppEnv().init();
+    await getIt.allReady();
 
     FlutterError.onError = ErrorHandler.handleFlutterError;
     PlatformDispatcher.instance.onError =
         ErrorHandler.handlePlatformDispatcherError;
 
-    Supabase.initialize(
-      url: AppEnv().supabaseHostUrl,
-      anonKey: AppEnv().supabaseApiKey,
+    final AppEnv env = createEnv();
+    await env.init();
+
+    await Supabase.initialize(
+      url: env.supabaseHostUrl,
+      anonKey: env.supabaseApiKey,
     );
+
     runApp(const MyApp());
   }, ErrorHandler.handleUncaughtError);
 }
@@ -37,19 +43,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        appBarTheme: AppBarTheme(backgroundColor: Colors.white),
+        appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: HomeScreen(),
+      home: const HomeScreen(),
       builder: (context, child) {
-        if (child == null) {
-          return const SizedBox.shrink();
-        }
-
+        if (child == null) return const SizedBox.shrink();
         return MediaQuery(
           data: MediaQuery.of(
             context,
-          ).copyWith(textScaler: TextScaler.linear(1.0)),
+          ).copyWith(textScaler: const TextScaler.linear(1.0)),
           child: child,
         );
       },
