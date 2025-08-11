@@ -1,32 +1,25 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:snap_blind/core/di/di.dart';
 import 'package:snap_blind/core/logger/app_logger.dart';
 
-final class AppEnv {
-  AppEnv._internal();
+abstract class AppEnv {
+  final String supabaseHostConst = 'SUPABASE_HOST_URL';
+  final String supabaseApiConst = 'SUPABASE_API_KEY';
 
-  static final AppEnv _instance = AppEnv._internal();
-  factory AppEnv() => _instance;
+  @protected
+  final AppLogger appLogger = getIt<AppLogger>();
 
-  final AppLogger _appLogger = getIt<AppLogger>();
+  @protected
+  late final String supabaseHostUrl;
 
-  late final String _supabaseHostUrl;
-  String get supabaseHostUrl => _supabaseHostUrl;
+  @protected
+  late final String supabaseApiKey;
 
-  late final String _supabaseApiKey;
-  String get supabaseApiKey => _supabaseApiKey;
+  Future<void> init();
 
-  Future<void> init() async {
-    await dotenv.load(fileName: 'env/.env');
-
-    _supabaseHostUrl = dotenv.get(
-      'SUPABASE_HOST_URL',
-      fallback: 'https://antkaamjavartdpwczbr.supabase.co',
-    );
-    _supabaseApiKey = dotenv.get('SUPABASE_API_KEY', fallback: '');
-
-    if (_supabaseApiKey.isEmpty) {
-      _appLogger.error('SUPABASE_API_KEY가 비어 있습니다.\n.env 파일을 확인해 주세요.');
+  void checkEnv() {
+    if (supabaseApiKey.isEmpty) {
+      appLogger.error('SUPABASE_API_KEY가 비어 있습니다.\n.env 파일을 확인해 주세요.');
     }
   }
 }
