@@ -1,0 +1,28 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:snap_blind/core/router/route_enum.dart';
+import 'package:snap_blind/presenter/home/home_screen.dart';
+
+final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
+GlobalKey<NavigatorState> get rootNavigatorKey => _rootNavigatorKey;
+
+GoRouter? _goRouter;
+GoRouter? get goRouter => _goRouter;
+
+void createRouter({String? initialLocation}) {
+  _goRouter = GoRouter(
+    navigatorKey: _rootNavigatorKey,
+    initialLocation: initialLocation,
+    redirect: (context, state) {
+      return AppRoute.home.path;
+    },
+    routes: [
+      GoRoute(
+        path: AppRoute.home.path,
+        builder: (context, state) {
+          return HomeScreen();
+        },
+      ),
+    ],
+  );
+}
