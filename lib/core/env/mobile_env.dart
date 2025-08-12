@@ -12,10 +12,10 @@ final class MobileEnv extends AppEnv {
     await dotenv.load(fileName: 'env/.env');
 
     supabaseHostUrl = dotenv.get(
-      supabaseHostConst,
+      AppEnv.supabaseHostConst,
       fallback: 'https://antkaamjavartdpwczbr.supabase.co',
     );
-    supabaseApiKey = dotenv.get(supabaseApiConst, fallback: '');
+    supabaseApiKey = dotenv.get(AppEnv.supabaseApiConst, fallback: '');
 
     checkEnv();
   }

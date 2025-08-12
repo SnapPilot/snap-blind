@@ -3,8 +3,8 @@ import 'package:snap_blind/core/di/di.dart';
 import 'package:snap_blind/core/logger/app_logger.dart';
 
 abstract class AppEnv {
-  final String supabaseHostConst = 'SUPABASE_HOST_URL';
-  final String supabaseApiConst = 'SUPABASE_API_KEY';
+  static const String supabaseHostConst = 'SUPABASE_HOST_URL';
+  static const String supabaseApiConst = 'SUPABASE_API_KEY';
 
   @protected
   final AppLogger appLogger = getIt<AppLogger>();
