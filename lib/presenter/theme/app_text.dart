@@ -1,24 +1,70 @@
 import 'package:flutter/material.dart';
 
 abstract final class AppTextStyle {
-  static const TextStyle rText12 = TextStyle(
-    fontSize: 12,
-    fontWeight: FontWeight.w400,
+  static const b22 = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 22,
+    height: 1.18,
   );
-  static const TextStyle rText14 = TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
-  );
-  static const TextStyle bText14 = TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w700,
-  );
-  static const TextStyle bText18 = TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.w700,
-  );
-  static const TextStyle bText20 = TextStyle(
+
+  static const b20 = TextStyle(
+    fontWeight: FontWeight.w600,
     fontSize: 20,
-    fontWeight: FontWeight.w700,
+    height: 1.20,
+  );
+
+  static const b18 = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 18,
+    height: 1.22,
+  );
+
+  static const b16 = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 16,
+    height: 1.25,
+  );
+
+  static const b14 = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 14,
+    height: 1.14,
+  );
+
+  static const b12 = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 12,
+    height: 1.17,
+  );
+
+  static const m18 = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 18,
+    height: 1.44,
+  );
+
+  static const m16 = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+    height: 1.38,
+  );
+
+  static const m14 = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 14,
+    height: 1.43,
+  );
+
+  static const m12 = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 12,
+    height: 1.50,
+    letterSpacing: 0,
+  );
+
+  static const m10 = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 10,
+    height: 1.40,
   );
 }
