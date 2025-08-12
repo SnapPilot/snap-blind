@@ -1,7 +1,7 @@
 # 시니어 소개팅 앱
 
 
-시니어 소개팅 앱 빠른 MVP 목표
+시니어 소개팅 앱 빠른 MVP 목표 <br>
 📎 Link: https://snap-blind.vercel.app/
 
 ---
@@ -10,6 +10,13 @@
 ```bash
 ./app_build.sh
 ```
+
+### 웹 빌드
+
+<img width="903" height="680" alt="스크린샷 2025-08-12 오후 6 05 32" src="https://github.com/user-attachments/assets/8ebaee4a-1792-4224-9e8b-8c5a3d315b18" />
+
+Additional run args<br>
+--dart-define=SUPABASE_HOST_URL=값 --dart-define=SUPABASE_API_KEY=값 
 
 Flutter 캐시 삭제 후 빌드
 ```bash
