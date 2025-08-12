@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:snap_blind/presenter/theme/app_colors.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'core/di/di.dart';
@@ -53,7 +54,10 @@ class MyApp extends StatelessWidget {
           data: MediaQuery.of(
             context,
           ).copyWith(textScaler: const TextScaler.linear(1.0)),
-          child: child,
+          child: Container(
+            color: AppColors.cGrey200,
+            child: Center(child: SizedBox(width: 600, child: child)),
+          ),
         );
       },
     );
