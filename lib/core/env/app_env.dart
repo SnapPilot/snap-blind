@@ -9,13 +9,19 @@ abstract class AppEnv {
   @protected
   final AppLogger appLogger = getIt<AppLogger>();
 
-  @protected
-  late final String supabaseHostUrl;
+  late final String _supabaseHostUrl;
+  String get supabaseHostUrl => _supabaseHostUrl;
 
-  @protected
-  late final String supabaseApiKey;
+  late final String _supabaseApiKey;
+  String get supabaseApiKey => _supabaseApiKey;
 
   Future<void> init();
+
+  @protected
+  void setEnv({required String hostUrl, required String apiKey}) {
+    _supabaseHostUrl = hostUrl;
+    _supabaseApiKey = apiKey;
+  }
 
   void checkEnv() {
     if (supabaseApiKey.isEmpty) {
