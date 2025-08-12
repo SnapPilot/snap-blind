@@ -54,7 +54,7 @@ abstract base class BaseScreen<
   Widget buildStateScreen(BuildContext context, S state) {
     switch (state.stateType) {
       case BaseStateType.initial:
-        return SizedBox.shrink();
+        return const SizedBox.shrink();
       case BaseStateType.inProgress:
         return const Center(child: CircularProgressIndicator());
       case BaseStateType.failure:
