@@ -33,7 +33,7 @@ void main() {
       anonKey: env.supabaseApiKey,
     );
 
-    createRouter(initialLocation: AppRoute.home.path);
+    createRouter(initialLocation: AppRoute.login.path);
 
     runApp(const MyApp());
   }, ErrorHandler.handleUncaughtError);
