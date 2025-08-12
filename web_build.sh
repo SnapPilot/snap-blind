@@ -8,6 +8,10 @@ flutter pub run build_runner build --delete-conflicting-outputs
 echo "🧼 Running dart fix..."
 dart fix --apply
 
-echo "✅ Done!"
+echo "✅ dart fix Done!"
 
-flutter/bin/flutter build web --release
+flutter build web --release \
+  --dart-define=SUPABASE_HOST_URL=$SUPABASE_HOST_URL \
+  --dart-define=SUPABASE_API_KEY=$SUPABASE_API_KEY
+
+echo "✅ Done! Output: build/web"
