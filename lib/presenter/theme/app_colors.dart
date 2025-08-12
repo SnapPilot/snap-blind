@@ -1,12 +1,16 @@
 import 'dart:ui';
 
 abstract final class AppColors {
-  static const Color secondary = Color(0xFF70B9BE);
-  static const Color black = Color(0xFF000000);
-  static const Color white = Color(0xFFFFFFFF);
-
-  static const Color ff0A2533 = Color(0xFF0A2533);
-  static const Color ff4D8194 = Color(0xFF4D8194);
-  static const Color ff97A2B0 = Color(0xFF97A2B0);
-  static const Color cGrey200 = Color(0xFFE7E8EE);
+  static const white = Color(0xFFFFFFFF);
+  static const black = Color(0xFF000000);
+  static const cGray50 = Color(0xFFF7F8F9);
+  static const cGray100 = Color(0xFFF2F3F7);
+  static const cGray200 = Color(0xFFE7E8EE);
+  static const cGray300 = Color(0xFFD6D7E1);
+  static const cGray400 = Color(0xFFC4C7D4);
+  static const cGray500 = Color(0xFFAFB2C0);
+  static const cGray600 = Color(0xFF8A8D9E);
+  static const cGray700 = Color(0xFF5C5F70);
+  static const cGray800 = Color(0xFF31313F);
+  static const cGray900 = Color(0xFF1F2128);
 }
