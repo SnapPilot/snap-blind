@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:snap_blind/core/router/route_enum.dart';
 import 'package:snap_blind/presenter/home/home_screen.dart';
+import 'package:snap_blind/presenter/login/login_screen.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 GlobalKey<NavigatorState> get rootNavigatorKey => _rootNavigatorKey;
@@ -14,13 +15,20 @@ void createRouter({String? initialLocation}) {
     navigatorKey: _rootNavigatorKey,
     initialLocation: initialLocation,
     redirect: (context, state) {
-      return AppRoute.home.path;
+      /// app TODO: 리다이렉트 로직 작성
+      return null;
     },
     routes: [
       GoRoute(
         path: AppRoute.home.path,
         builder: (context, state) {
-          return HomeScreen();
+          return const HomeScreen();
+        },
+      ),
+      GoRoute(
+        path: AppRoute.login.path,
+        builder: (context, state) {
+          return const LoginScreen();
         },
       ),
     ],
