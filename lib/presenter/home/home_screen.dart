@@ -55,12 +55,12 @@ final class HomeScreen extends BaseScreen<RecipeBloc, RecipeState> {
                 Icon(
                   Icons.wb_sunny_outlined,
                   size: 20,
-                  color: AppColors.ff4D8194,
+                  color: AppColors.cGray400,
                 ),
                 SizedBox(width: 4),
                 Text(
                   'Good Morning',
-                  style: AppTextStyle.rText14.apply(color: AppColors.ff0A2533),
+                  style: AppTextStyle.m14.apply(color: AppColors.cGray800),
                 ),
                 Spacer(),
                 Icon(
@@ -73,7 +73,7 @@ final class HomeScreen extends BaseScreen<RecipeBloc, RecipeState> {
             SizedBox(height: 3),
             Text(
               'Alena Sabyan',
-              style: AppTextStyle.bText20.apply(color: AppColors.ff0A2533),
+              style: AppTextStyle.b20.apply(color: AppColors.cGray800),
             ),
           ],
         ),
@@ -97,7 +97,7 @@ final class _FeaturedList extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 24),
-                child: Text('Featured', style: AppTextStyle.bText20),
+                child: Text('Featured', style: AppTextStyle.b20),
               ),
               SizedBox(height: 12),
               SizedBox(
@@ -148,12 +148,12 @@ final class _CategoryArea extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Category', style: AppTextStyle.bText18),
+            Text('Category', style: AppTextStyle.b18),
             TextButton(
               onPressed: () {},
               child: Text(
                 'See All',
-                style: AppTextStyle.bText14.apply(color: AppColors.secondary),
+                style: AppTextStyle.b14.apply(color: AppColors.cGray200),
               ),
             ),
           ],
@@ -167,7 +167,7 @@ final class _CategoryArea extends StatelessWidget {
               return Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(22),
-                  color: AppColors.secondary,
+                  color: AppColors.cGray900,
                 ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
@@ -176,7 +176,7 @@ final class _CategoryArea extends StatelessWidget {
                   ),
                   child: Text(
                     'Food',
-                    style: AppTextStyle.rText14.apply(color: AppColors.white),
+                    style: AppTextStyle.m14.apply(color: AppColors.white),
                   ),
                 ),
               );
@@ -203,12 +203,12 @@ final class _PopularRecipeArea extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Popular Recipes', style: AppTextStyle.bText18),
+            Text('Popular Recipes', style: AppTextStyle.b18),
             TextButton(
               onPressed: () {},
               child: Text(
                 'See All',
-                style: AppTextStyle.bText14.apply(color: AppColors.secondary),
+                style: AppTextStyle.b14.apply(color: AppColors.cGray200),
               ),
             ),
           ],
@@ -250,8 +250,8 @@ final class _PopularRecipeArea extends StatelessWidget {
                       SizedBox(height: 12),
                       Text(
                         'Spaghetti Carbonara\nsadpaskdopakdpoakspo',
-                        style: AppTextStyle.bText14.apply(
-                          color: AppColors.ff0A2533,
+                        style: AppTextStyle.b14.apply(
+                          color: AppColors.cGray500,
                         ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -262,32 +262,32 @@ final class _PopularRecipeArea extends StatelessWidget {
                           Icon(
                             Icons.local_fire_department_outlined,
                             size: 16,
-                            color: AppColors.ff97A2B0,
+                            color: AppColors.cGray500,
                           ),
                           SizedBox(width: 4),
                           Text(
                             '120 Kcal',
-                            style: AppTextStyle.rText12.apply(
-                              color: AppColors.ff97A2B0,
+                            style: AppTextStyle.m12.apply(
+                              color: AppColors.cGray600,
                             ),
                           ),
                           Expanded(
                             child: Icon(
                               Icons.circle,
                               size: 4,
-                              color: AppColors.ff97A2B0,
+                              color: AppColors.cGray600,
                             ),
                           ),
                           Icon(
                             Icons.access_time_outlined,
                             size: 16,
-                            color: AppColors.ff97A2B0,
+                            color: AppColors.cGray600,
                           ),
                           SizedBox(width: 4),
                           Text(
                             '30 min',
-                            style: AppTextStyle.rText12.apply(
-                              color: AppColors.ff97A2B0,
+                            style: AppTextStyle.m12.apply(
+                              color: AppColors.cGray600,
                             ),
                           ),
                         ],
