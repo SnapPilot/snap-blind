@@ -46,6 +46,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        fontFamily: 'Pretendard',
       ),
       home: const HomeScreen(),
       builder: (context, child) {
@@ -55,7 +56,7 @@ class MyApp extends StatelessWidget {
             context,
           ).copyWith(textScaler: const TextScaler.linear(1.0)),
           child: Container(
-            color: AppColors.cGrey200,
+            color: AppColors.cGray200,
             child: Center(child: SizedBox(width: 600, child: child)),
           ),
         );
