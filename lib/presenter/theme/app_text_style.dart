@@ -79,4 +79,10 @@ abstract final class AppTextStyle {
     fontSize: 10,
     height: 1.40,
   );
+
+  static const r16 = TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    height: 1.38,
+  );
 }
