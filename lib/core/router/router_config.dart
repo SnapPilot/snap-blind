@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:snap_blind/core/router/route_enum.dart';
+import 'package:snap_blind/presenter/chat/chat_list_screen.dart';
 import 'package:snap_blind/presenter/home/home_screen.dart';
 import 'package:snap_blind/presenter/login/login_screen.dart';
+import 'package:snap_blind/presenter/my/my_info_screen.dart';
+import 'package:snap_blind/presenter/widget/app_bottom_navigation_bar.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 GlobalKey<NavigatorState> get rootNavigatorKey => _rootNavigatorKey;
@@ -19,11 +22,42 @@ void createRouter({String? initialLocation}) {
       return null;
     },
     routes: [
-      GoRoute(
-        path: AppRoute.home.path,
-        builder: (context, state) {
-          return const HomeScreen();
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) {
+          return AppBottomNavigationBar(navigationShell: navigationShell);
         },
+        branches: [
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoute.home.path,
+                builder: (context, state) {
+                  return const HomeScreen();
+                },
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoute.chatList.path,
+                builder: (context, state) {
+                  return const ChatListScreen();
+                },
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoute.myInfo.path,
+                builder: (context, state) {
+                  return const MyInfoScreen();
+                },
+              ),
+            ],
+          ),
+        ],
       ),
       GoRoute(
         path: AppRoute.login.path,
