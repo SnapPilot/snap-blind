@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:snap_blind/presenter/const/string_const.dart';
 import 'package:snap_blind/presenter/theme/app_colors.dart';
-import 'package:snap_blind/presenter/theme/app_text.dart';
+import 'package:snap_blind/presenter/theme/app_text_style.dart';
 
 /// * [BottomNavigationBar.unselectedItemColor]를 지정하면
 /// * [BottomNavigationBar.unselectedLabelStyle]에 설정한
