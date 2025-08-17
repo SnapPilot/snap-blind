@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:snap_blind/core/router/route_enum.dart';
 import 'package:snap_blind/presenter/chat/chat_list_screen.dart';
+import 'package:snap_blind/presenter/chat/chat_screen.dart';
 import 'package:snap_blind/presenter/home/home_screen.dart';
 import 'package:snap_blind/presenter/login/login_screen.dart';
 import 'package:snap_blind/presenter/my/my_info_screen.dart';
@@ -63,6 +64,12 @@ void createRouter({String? initialLocation}) {
         path: AppRoute.login.path,
         builder: (context, state) {
           return const LoginScreen();
+        },
+      ),
+      GoRoute(
+        path: AppRoute.chat.path,
+        builder: (context, state) {
+          return const ChatScreen();
         },
       ),
     ],
