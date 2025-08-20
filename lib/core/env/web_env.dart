@@ -12,6 +12,14 @@ final class WebEnv extends AppEnv {
         AppEnv.supabaseApiConst,
         defaultValue: '',
       ),
+      kakoSdkNativeKey: const String.fromEnvironment(
+        AppEnv.kakaoSdkNativeConst,
+        defaultValue: '',
+      ),
+      kakaoSdkJsKey: const String.fromEnvironment(
+        AppEnv.kakaoSdkJsConst,
+        defaultValue: '',
+      ),
     );
 
     checkEnv();

@@ -17,6 +17,8 @@ final class MobileEnv extends AppEnv {
         fallback: 'https://antkaamjavartdpwczbr.supabase.co',
       ),
       apiKey: dotenv.get(AppEnv.supabaseApiConst, fallback: ''),
+      kakoSdkNativeKey: dotenv.get(AppEnv.kakaoSdkNativeConst, fallback: ''),
+      kakaoSdkJsKey: dotenv.get(AppEnv.kakaoSdkJsConst, fallback: ''),
     );
 
     checkEnv();
