@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:snap_blind/core/router/route_enum.dart';
 import 'package:snap_blind/core/router/router_config.dart';
 import 'package:snap_blind/presenter/theme/app_colors.dart';
@@ -31,6 +32,11 @@ void main() {
     await Supabase.initialize(
       url: env.supabaseHostUrl,
       anonKey: env.supabaseApiKey,
+    );
+
+    KakaoSdk.init(
+      nativeAppKey: env.kakaoSdkNativeKey,
+      javaScriptAppKey: env.kakaoSdkJsKey,
     );
 
     createRouter(initialLocation: AppRoute.login.path);

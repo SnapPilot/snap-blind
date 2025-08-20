@@ -1,4 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:label="snap_blind"
         android:name="${applicationName}"
@@ -23,6 +26,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
+                <data android:scheme="kakao0c95020e5b7a9dc111f708bc63659e42" android:host="oauth"/>
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.
