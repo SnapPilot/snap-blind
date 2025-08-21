@@ -1,26 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:snap_blind/core/router/route_enum.dart';
+import 'package:snap_blind/presenter/base/base_screen.dart';
+import 'package:snap_blind/presenter/bloc/auth/auth_bloc.dart';
+import 'package:snap_blind/presenter/bloc/auth/auth_event.dart';
+import 'package:snap_blind/presenter/bloc/auth/auth_state.dart';
 import 'package:snap_blind/presenter/const/asset_const.dart';
 import 'package:snap_blind/presenter/theme/app_colors.dart';
 import 'package:snap_blind/presenter/theme/app_text_style.dart';
 
-final class LoginScreen extends StatelessWidget {
+final class LoginScreen extends BaseScreen<AuthBloc, AuthState> {
   const LoginScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: AppColors.white,
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [Spacer(), _AppLogoArea(), Spacer(), _KaKaoLoginBtn()],
-        ),
+  Widget buildScreen(BuildContext context, AuthState state) {
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state is LoginSuccessState) {
+          context.push(AppRoute.home.path);
+        }
+      },
+      child: const Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [Spacer(), _AppLogoArea(), Spacer(), _KaKaoLoginBtn()],
       ),
     );
   }
+
+  @override
+  bool get wrapWithSafeArea => true;
+
+  @override
+  Color? get unSafeAreaColor => AppColors.white;
 }
 
 final class _AppLogoArea extends StatelessWidget {
@@ -50,8 +63,7 @@ final class _KaKaoLoginBtn extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
       child: GestureDetector(
         onTap: () {
-          /// app TODO: Login Action
-          context.go(AppRoute.home.path);
+          context.read<AuthBloc>().add(LoginRequestEvent());
         },
         child: Image.asset(AssetConst.kakaoLoginBtnPath),
       ),
