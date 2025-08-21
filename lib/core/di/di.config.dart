@@ -16,14 +16,21 @@ import 'package:snap_blind/core/di/register_module.dart' as _i407;
 import 'package:snap_blind/core/logger/app_logger.dart' as _i382;
 import 'package:snap_blind/core/logger/dev_logger.dart' as _i1066;
 import 'package:snap_blind/core/logger/prod_logger.dart' as _i1068;
+import 'package:snap_blind/data/auth/repository/kakao_auth_repository.dart'
+    as _i505;
+import 'package:snap_blind/data/auth/source/kakao_auth_data_source.dart'
+    as _i41;
 import 'package:snap_blind/data/recipe/repository/recipe_repository_impl.dart'
     as _i784;
 import 'package:snap_blind/data/recipe/source/remote/dummy/dummy_recipe_data_source.dart'
     as _i190;
+import 'package:snap_blind/domain/auth/repository/auth_repository.dart'
+    as _i994;
 import 'package:snap_blind/domain/recipe/repository/recipe_repository.dart'
     as _i73;
 import 'package:snap_blind/domain/recipe/use_case/recipe_use_case.dart'
     as _i833;
+import 'package:snap_blind/presenter/bloc/auth/auth_bloc.dart' as _i114;
 import 'package:snap_blind/presenter/bloc/recipe/recipe_bloc.dart' as _i479;
 
 const String _dev = 'dev';
@@ -38,6 +45,9 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final registerModule = _$RegisterModule();
     gh.lazySingleton<_i361.Dio>(() => registerModule.dio());
+    gh.lazySingleton<_i41.KaKaoAuthDataSource>(
+      () => _i41.KaKaoAuthDataSource(),
+    );
     gh.lazySingleton<_i382.AppLogger>(
       () => _i1066.DevLogger(),
       registerFor: {_dev},
@@ -54,8 +64,14 @@ extension GetItInjectableX on _i174.GetIt {
         recipeApi: gh<_i190.DummyRecipeDataSource>(),
       ),
     );
+    gh.lazySingleton<_i994.AuthRepository>(
+      () => _i505.KaKaoAuthRepository(remote: gh<_i41.KaKaoAuthDataSource>()),
+    );
     gh.factory<_i833.GetRecipes>(
       () => _i833.GetRecipes(repository: gh<_i73.RecipeRepository>()),
+    );
+    gh.factory<_i114.AuthBloc>(
+      () => _i114.AuthBloc(gh<_i994.AuthRepository>()),
     );
     gh.factory<_i479.RecipeBloc>(
       () => _i479.RecipeBloc(gh<_i833.GetRecipes>()),
