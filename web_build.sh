@@ -15,6 +15,8 @@ dart fix --apply || true
 echo "🚀 Building web..."
 flutter build web --release \
   --dart-define=SUPABASE_HOST_URL="$SUPABASE_HOST_URL" \
-  --dart-define=SUPABASE_API_KEY="$SUPABASE_API_KEY"
+  --dart-define=SUPABASE_API_KEY="$SUPABASE_API_KEY" \
+  --dart-define=KAKAO_SDK_JS_KEY="$KAKAO_SDK_JS_KEY" \
+
 
 echo "✅ Done! Output: build/web"
