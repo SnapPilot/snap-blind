@@ -16,7 +16,7 @@ final class MyInfoScreen extends BaseScreen<RecipeBloc, RecipeState> {
       children: [
         const _MyInfoArea(),
         const AppDivider(thickness: 8, color: AppColors.cGray50),
-        const _MenuItem(text: StringConst.settingAlarm),
+        _MenuItem(text: StringConst.settingAlarm, onTap: () {}),
         Expanded(
           child: Container(width: double.infinity, color: AppColors.cGray50),
         ),
@@ -81,7 +81,7 @@ final class _MyInfoArea extends StatelessWidget {
 }
 
 class _MenuItem extends StatelessWidget {
-  const _MenuItem({this.onTap, this.text = ''});
+  const _MenuItem({this.text = '', this.onTap});
 
   final VoidCallback? onTap;
   final String text;
