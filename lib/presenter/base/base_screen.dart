@@ -19,7 +19,8 @@ abstract base class BaseScreen<
         onBlocCreated(bloc);
         return bloc;
       },
-      child: BlocBuilder<B, S>(
+      child: BlocConsumer<B, S>(
+        listener: onStateChanged,
         builder: (context, state) {
           return Container(
             color: unSafeAreaColor,
@@ -102,4 +103,7 @@ abstract base class BaseScreen<
 
   @protected
   void onBlocCreated(B bloc) {}
+
+  @protected
+  void onStateChanged(BuildContext context, S state) {}
 }

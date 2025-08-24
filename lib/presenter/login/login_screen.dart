@@ -16,17 +16,17 @@ final class LoginScreen extends BaseScreen<AuthBloc, AuthState> {
 
   @override
   Widget buildScreen(BuildContext context, AuthState state) {
-    return BlocListener<AuthBloc, AuthState>(
-      listener: (context, state) {
-        if (state is LoginSuccessState) {
-          context.push(AppRoute.home.path);
-        }
-      },
-      child: const Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [Spacer(), _AppLogoArea(), Spacer(), _KaKaoLoginBtn()],
-      ),
+    return const Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [Spacer(), _AppLogoArea(), Spacer(), _KaKaoLoginBtn()],
     );
+  }
+
+  @override
+  void onStateChanged(BuildContext context, AuthState state) {
+    if (state is LoginSuccessState) {
+      context.go(AppRoute.home.path);
+    }
   }
 
   @override
