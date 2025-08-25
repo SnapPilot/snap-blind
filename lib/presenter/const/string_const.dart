@@ -9,5 +9,14 @@ abstract final class StringConst {
   static const String myInfo = '내 정보';
   static const String settingAlarm = '알림 설정';
   static const String anonymous = '익명';
-  static const String modifyProfile = '프로필 수정';
+  static const String editProfile = '프로필 수정';
+  static const String nickName = '닉네임';
+  static const String nameHint = '이름을 입력해주세요.';
+  static const String gender = '성별';
+  static const String genderHint = '성별을 선택해주세요.';
+  static const String age = '나이';
+  static const String ageHint = '나이를 입력해주세요.';
+  static const String intro = '소개';
+  static const String introHint = '내 소개를 입력해주세요.';
+  static const String save = '저장';
 }
