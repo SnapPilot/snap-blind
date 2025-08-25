@@ -32,6 +32,7 @@ import 'package:snap_blind/domain/recipe/use_case/recipe_use_case.dart'
     as _i833;
 import 'package:snap_blind/presenter/bloc/auth/auth_bloc.dart' as _i114;
 import 'package:snap_blind/presenter/bloc/recipe/recipe_bloc.dart' as _i479;
+import 'package:snap_blind/presenter/bloc/user/user_bloc.dart' as _i794;
 
 const String _dev = 'dev';
 const String _prod = 'prod';
@@ -44,6 +45,7 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final registerModule = _$RegisterModule();
+    gh.factory<_i794.UserBloc>(() => _i794.UserBloc());
     gh.lazySingleton<_i361.Dio>(() => registerModule.dio());
     gh.lazySingleton<_i41.KaKaoAuthDataSource>(
       () => _i41.KaKaoAuthDataSource(),

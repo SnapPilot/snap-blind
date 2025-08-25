@@ -19,6 +19,7 @@ abstract final class AppTextStyle {
     height: 1.22,
   );
 
+  /// sh5
   static const b16 = TextStyle(
     fontWeight: FontWeight.w700,
     fontSize: 16,
@@ -48,6 +49,12 @@ abstract final class AppTextStyle {
     fontWeight: FontWeight.w600,
     fontSize: 20,
     height: 1.22,
+  );
+
+  static const sb12 = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 12,
+    height: 1.50,
   );
 
   static const sb16 = TextStyle(
@@ -92,6 +99,12 @@ abstract final class AppTextStyle {
     fontWeight: FontWeight.w500,
     fontSize: 10,
     height: 1.40,
+  );
+
+  static const r18 = TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: 18,
+    height: 1.44,
   );
 
   static const r16 = TextStyle(

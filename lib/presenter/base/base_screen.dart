@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:snap_blind/presenter/base/base_state.dart';
+import 'package:snap_blind/presenter/const/string_const.dart';
 
 @immutable
 abstract base class BaseScreen<
@@ -59,7 +60,12 @@ abstract base class BaseScreen<
       case BaseStateType.inProgress:
         return const Center(child: CircularProgressIndicator());
       case BaseStateType.failure:
-        return Center(child: Text(state.errorMessage ?? '데이터를 불러오는데 실패 했습니다'));
+        if (showErrorPage) {
+          return Center(
+            child: Text(state.errorMessage ?? StringConst.defaultErrorMessage),
+          );
+        }
+        return buildScreen(context, state);
       default:
         return buildScreen(context, state);
     }
@@ -100,6 +106,9 @@ abstract base class BaseScreen<
 
   @protected
   bool get setTopSafeArea => true;
+
+  @protected
+  bool get showErrorPage => true;
 
   @protected
   void onBlocCreated(B bloc) {}
