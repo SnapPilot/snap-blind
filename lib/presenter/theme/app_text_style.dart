@@ -51,6 +51,12 @@ abstract final class AppTextStyle {
     height: 1.22,
   );
 
+  static const sb12 = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 12,
+    height: 1.50,
+  );
+
   static const sb16 = TextStyle(
     fontWeight: FontWeight.w600,
     fontSize: 20,
