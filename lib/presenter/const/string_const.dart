@@ -21,4 +21,6 @@ abstract final class StringConst {
   static const String save = '저장';
   static const String defaultErrorMessage = '요청을 처리하던 중 문제가 발생했습니다.';
   static const String ageInputErrorMessage = '올바른 나이를 입력해주세요.';
+  static const String male = '남';
+  static const String female = '여';
 }
