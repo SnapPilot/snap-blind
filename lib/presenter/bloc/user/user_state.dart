@@ -1,7 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:snap_blind/presenter/base/base_state.dart';
+import 'package:snap_blind/presenter/const/string_const.dart';
 
-enum Gender { male, female }
+enum Gender {
+  male,
+  female;
+
+  @override
+  String toString() {
+    switch (this) {
+      case male:
+        return StringConst.male;
+      case female:
+        return StringConst.female;
+    }
+  }
+}
 
 @immutable
 final class UserEditState extends BaseState {
