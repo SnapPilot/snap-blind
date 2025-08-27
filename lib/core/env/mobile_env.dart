@@ -14,7 +14,7 @@ final class MobileEnv extends AppEnv {
     setEnv(
       hostUrl: dotenv.get(
         AppEnv.supabaseHostConst,
-        fallback: 'https://antkaamjavartdpwczbr.supabase.co',
+        fallback: ' https://evvzbuupespgfbyjhvvk.supabase.co',
       ),
       apiKey: dotenv.get(AppEnv.supabaseApiConst, fallback: ''),
       kakoSdkNativeKey: dotenv.get(AppEnv.kakaoSdkNativeConst, fallback: ''),
