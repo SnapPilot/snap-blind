@@ -6,7 +6,7 @@ final class WebEnv extends AppEnv {
     setEnv(
       hostUrl: const String.fromEnvironment(
         AppEnv.supabaseHostConst,
-        defaultValue: 'https://antkaamjavartdpwczbr.supabase.co',
+        defaultValue: 'https://evvzbuupespgfbyjhvvk.supabase.co',
       ),
       apiKey: const String.fromEnvironment(
         AppEnv.supabaseApiConst,
