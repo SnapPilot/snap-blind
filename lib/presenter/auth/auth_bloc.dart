@@ -6,8 +6,8 @@ import 'package:snap_blind/core/enum/login_type.dart';
 import 'package:snap_blind/core/error/result.dart';
 import 'package:snap_blind/core/extension/result_extension.dart';
 import 'package:snap_blind/core/logger/app_logger.dart';
+import 'package:snap_blind/data/auth/dto/oauth_api_dto.dart';
 import 'package:snap_blind/data/auth/repository/supabase_auth_repository.dart';
-import 'package:snap_blind/data/auth/response/oauth_api_response.dart';
 import 'package:snap_blind/domain/auth/entity/auth_token_entity.dart';
 import 'package:snap_blind/domain/auth/entity/user_entity.dart';
 import 'package:snap_blind/domain/auth/repository/auth_repository.dart';
@@ -39,8 +39,7 @@ final class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
   ) async {
     emit(state.copyWith(stateType: BaseStateType.inProgress));
 
-    final Result<OAuthApiResponse> authApiResponse =
-        await _oAuthRepository.login();
+    final Result<OAuthApiDto> authApiResponse = await _oAuthRepository.login();
 
     authApiResponse.when(
       ok: (authApiResponse) async {

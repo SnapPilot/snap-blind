@@ -3,8 +3,8 @@ import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart' as kakao;
 import 'package:snap_blind/core/enum/login_type.dart';
 import 'package:snap_blind/core/error/result.dart';
 import 'package:snap_blind/core/extension/result_extension.dart';
+import 'package:snap_blind/data/auth/dto/oauth_api_dto.dart';
 import 'package:snap_blind/data/auth/exception/kakao_exception.dart';
-import 'package:snap_blind/data/auth/response/oauth_api_response.dart';
 import 'package:snap_blind/data/auth/source/kakao_auth_data_source.dart';
 import 'package:snap_blind/domain/auth/entity/auth_token_entity.dart';
 import 'package:snap_blind/domain/auth/entity/user_entity.dart';
@@ -17,7 +17,7 @@ final class KaKaoAuthRepository implements AuthRepository {
   final KaKaoAuthDataSource _remote;
 
   @override
-  Future<Result<OAuthApiResponse>> login() async {
+  Future<Result<OAuthApiDto>> login() async {
     final Result<kakao.OAuthToken> kakaoToken =
         await _remote.loginWithKakaoTalk();
 
@@ -36,10 +36,7 @@ final class KaKaoAuthRepository implements AuthRepository {
         );
 
         return Result.ok(
-          OAuthApiResponse(
-            authTokenEntity: authTokenEntity,
-            userEntity: userEntity,
-          ),
+          OAuthApiDto(authTokenEntity: authTokenEntity, userEntity: userEntity),
         );
       },
       exception: (e) async {
