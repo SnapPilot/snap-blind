@@ -11,10 +11,10 @@ import 'package:snap_blind/data/auth/response/oauth_api_response.dart';
 import 'package:snap_blind/domain/auth/entity/auth_token_entity.dart';
 import 'package:snap_blind/domain/auth/entity/user_entity.dart';
 import 'package:snap_blind/domain/auth/repository/auth_repository.dart';
+import 'package:snap_blind/presenter/auth/auth_event.dart';
+import 'package:snap_blind/presenter/auth/auth_state.dart';
 import 'package:snap_blind/presenter/base/base_bloc.dart';
 import 'package:snap_blind/presenter/base/base_state.dart';
-import 'package:snap_blind/presenter/bloc/auth/auth_event.dart';
-import 'package:snap_blind/presenter/bloc/auth/auth_state.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
 @injectable

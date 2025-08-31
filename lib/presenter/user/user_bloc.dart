@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:snap_blind/presenter/base/base_bloc.dart';
 import 'package:snap_blind/presenter/base/base_state.dart';
-import 'package:snap_blind/presenter/bloc/user/user_event.dart';
-import 'package:snap_blind/presenter/bloc/user/user_state.dart';
 import 'package:snap_blind/presenter/const/string_const.dart';
+import 'package:snap_blind/presenter/user/user_event.dart';
+import 'package:snap_blind/presenter/user/user_state.dart';
 
 @injectable
 final class UserBloc extends BaseBloc<UserEditEvent, UserEditState> {

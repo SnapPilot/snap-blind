@@ -7,7 +7,7 @@ import 'package:injectable/injectable.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:snap_blind/core/router/route_enum.dart';
 import 'package:snap_blind/core/router/router_config.dart';
-import 'package:snap_blind/presenter/bloc/auth/auth_bloc.dart';
+import 'package:snap_blind/presenter/auth/auth_bloc.dart';
 import 'package:snap_blind/presenter/theme/app_colors.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 

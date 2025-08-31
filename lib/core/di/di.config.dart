@@ -24,8 +24,8 @@ import 'package:snap_blind/data/auth/source/kakao_auth_data_source.dart'
     as _i41;
 import 'package:snap_blind/domain/auth/repository/auth_repository.dart'
     as _i994;
-import 'package:snap_blind/presenter/bloc/auth/auth_bloc.dart' as _i114;
-import 'package:snap_blind/presenter/bloc/user/user_bloc.dart' as _i794;
+import 'package:snap_blind/presenter/auth/auth_bloc.dart' as _i605;
+import 'package:snap_blind/presenter/user/user_bloc.dart' as _i496;
 
 const String _dev = 'dev';
 const String _prod = 'prod';
@@ -38,10 +38,10 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final registerModule = _$RegisterModule();
-    gh.factory<_i794.UserBloc>(() => _i794.UserBloc());
     gh.factory<_i921.SupabaseAuthRepository>(
       () => _i921.SupabaseAuthRepository(),
     );
+    gh.factory<_i496.UserBloc>(() => _i496.UserBloc());
     gh.lazySingleton<_i361.Dio>(() => registerModule.dio());
     gh.lazySingleton<_i41.KaKaoAuthDataSource>(
       () => _i41.KaKaoAuthDataSource(),
@@ -57,8 +57,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i994.AuthRepository>(
       () => _i505.KaKaoAuthRepository(remote: gh<_i41.KaKaoAuthDataSource>()),
     );
-    gh.factory<_i114.AuthBloc>(
-      () => _i114.AuthBloc(
+    gh.factory<_i605.AuthBloc>(
+      () => _i605.AuthBloc(
         gh<_i994.AuthRepository>(),
         gh<_i921.SupabaseAuthRepository>(),
       ),
