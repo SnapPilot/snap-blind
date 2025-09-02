@@ -6,7 +6,7 @@ import 'package:snap_blind/core/extension/result_extension.dart';
 import 'package:snap_blind/data/auth/exception/kakao_exception.dart';
 import 'package:snap_blind/data/auth/source/kakao_auth_data_source.dart';
 import 'package:snap_blind/domain/auth/entity/auth_token_entity.dart';
-import 'package:snap_blind/data/auth/response/kakao_api_response.dart';
+import 'package:snap_blind/data/auth/response/oauth_api_response.dart';
 import 'package:snap_blind/domain/auth/entity/user_entity.dart';
 import 'package:snap_blind/domain/auth/repository/auth_repository.dart';
 

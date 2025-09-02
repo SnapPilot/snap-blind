@@ -52,8 +52,15 @@ final class LoginSuccessState extends AuthState {
 }
 
 @immutable
-final class LoginFailureState extends AuthState {
-  const LoginFailureState({this.message = ""});
+final class KaKaoLoginFailureState extends AuthState {
+  const KaKaoLoginFailureState({this.message = ""});
+
+  final String message;
+}
+
+@immutable
+final class SupabaseLoginFailureState extends AuthState {
+  const SupabaseLoginFailureState({this.message = ""});
 
   final String message;
 }

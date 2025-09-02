@@ -18,4 +18,12 @@ final class UserEntity {
   }) {
     return UserEntity(socialId: socialId, loginType: loginType, email: email);
   }
+
+  UserEntity copyWith({int? socialId, LoginType? loginType, String? email}) {
+    return UserEntity(
+      socialId: socialId ?? this.socialId,
+      loginType: loginType ?? this.loginType,
+      email: email ?? this.email,
+    );
+  }
 }
