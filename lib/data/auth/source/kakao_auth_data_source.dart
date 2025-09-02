@@ -26,4 +26,8 @@ final class KaKaoAuthDataSource {
   Future<void> logout() async {
     await _kakaoApi.logout();
   }
+
+  Future<kakao.User> getUser() async {
+    return await _kakaoApi.me();
+  }
 }

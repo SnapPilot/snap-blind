@@ -1,10 +1,13 @@
 import 'package:injectable/injectable.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart' as kakao;
+import 'package:snap_blind/core/enum/login_type.dart';
 import 'package:snap_blind/core/error/result.dart';
 import 'package:snap_blind/core/extension/result_extension.dart';
 import 'package:snap_blind/data/auth/exception/kakao_exception.dart';
 import 'package:snap_blind/data/auth/source/kakao_auth_data_source.dart';
 import 'package:snap_blind/domain/auth/entity/auth_token_entity.dart';
+import 'package:snap_blind/data/auth/response/kakao_api_response.dart';
+import 'package:snap_blind/domain/auth/entity/user_entity.dart';
 import 'package:snap_blind/domain/auth/repository/auth_repository.dart';
 
 @LazySingleton(as: AuthRepository)
@@ -14,11 +17,29 @@ final class KaKaoAuthRepository implements AuthRepository {
   final KaKaoAuthDataSource _remote;
 
   @override
-  Future<Result<AuthTokenEntity>> login() async {
-    final Result<kakao.OAuthToken> token = await _remote.loginWithKakaoTalk();
+  Future<Result<OAuthApiResponse>> login() async {
+    final Result<kakao.OAuthToken> kakaoToken =
+        await _remote.loginWithKakaoTalk();
 
-    return token.when(
-      ok: (kakao.OAuthToken token) => Result.ok(_map(token)),
+    return kakaoToken.when(
+      ok: (kakao.OAuthToken kakaoToken) async {
+        final kakao.User user = await _remote.getUser();
+        final AuthTokenEntity authTokenEntity = AuthTokenEntity.fromKaKao(
+          kakaoToken,
+        );
+        final UserEntity userEntity = UserEntity.fromKaKao(
+          socialId: user.id,
+          loginType: LoginType.kakao,
+          email: user.kakaoAccount?.email ?? '',
+        );
+
+        return Result.ok(
+          OAuthApiResponse(
+            authTokenEntity: authTokenEntity,
+            userEntity: userEntity,
+          ),
+        );
+      },
       exception: (e) async {
         if (e is KaKaoUserCanceledException) {
           await _remote.loginWithKakaoAccount();
@@ -34,12 +55,4 @@ final class KaKaoAuthRepository implements AuthRepository {
     // TODO: implement logout
     throw UnimplementedError();
   }
-
-  /// app TODO: Mapper를 만들든 확장 함수를 만들든
-  AuthTokenEntity _map(kakao.OAuthToken t) => AuthTokenEntity(
-    accessToken: t.accessToken,
-    accessTokenExpiresAt: t.expiresAt,
-    refreshToken: t.refreshToken,
-    refreshTokenExpiresAt: t.refreshTokenExpiresAt,
-  );
 }
