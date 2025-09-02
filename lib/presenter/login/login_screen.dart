@@ -26,6 +26,16 @@ final class LoginScreen extends BaseScreen<AuthBloc, AuthState> {
   void onStateChanged(BuildContext context, AuthState state) {
     if (state is LoginSuccessState) {
       context.go(AppRoute.home.path);
+      return;
+    }
+
+    if (state is KaKaoLoginSuccessState) {
+      context.read<AuthBloc>().add(
+        LoginRequestEvent(
+          userEntity: state.userEntity!,
+          authTokenEntity: state.authTokenEntity!,
+        ),
+      );
     }
   }
 
@@ -63,7 +73,7 @@ final class _KaKaoLoginBtn extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
       child: GestureDetector(
         onTap: () {
-          context.read<AuthBloc>().add(LoginRequestEvent());
+          context.read<AuthBloc>().add(KaKaoLoginRequestEvent());
         },
         child: Image.asset(AssetConst.kakaoLoginBtnPath),
       ),

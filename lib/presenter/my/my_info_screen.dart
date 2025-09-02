@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:snap_blind/presenter/base/base_screen.dart';
 import 'package:snap_blind/presenter/base/base_state.dart';
-import 'package:snap_blind/presenter/bloc/recipe/recipe_bloc.dart';
-import 'package:snap_blind/presenter/bloc/recipe/recipe_state.dart';
+import 'package:snap_blind/presenter/bloc/auth/auth_bloc.dart';
+import 'package:snap_blind/presenter/bloc/auth/auth_state.dart';
 import 'package:snap_blind/presenter/bloc/user/user_bloc.dart';
 import 'package:snap_blind/presenter/bloc/user/user_event.dart';
 import 'package:snap_blind/presenter/bloc/user/user_state.dart';
@@ -15,11 +15,11 @@ import 'package:snap_blind/presenter/theme/app_text_style.dart';
 import 'package:snap_blind/presenter/widget/app_divider.dart';
 import 'package:snap_blind/presenter/widget/labeled_text_form_field.dart';
 
-final class MyInfoScreen extends BaseScreen<RecipeBloc, RecipeState> {
+final class MyInfoScreen extends BaseScreen<AuthBloc, AuthState> {
   const MyInfoScreen({super.key});
 
   @override
-  Widget buildScreen(BuildContext context, RecipeState state) {
+  Widget buildScreen(BuildContext context, AuthState state) {
     return Column(
       children: [
         const _MyInfoArea(),

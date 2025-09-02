@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:snap_blind/core/error/result.dart';
 import 'package:snap_blind/data/auth/exception/kakao_exception.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract interface class CallAdapter<R, T> {
   T adapt(R Function() call);
@@ -37,6 +38,22 @@ class KakaoCallAdapter<T> extends CallAdapter<Future<T>, Future<Result<T>>> {
       return Result.error(e);
     } on Exception catch (e, stack) {
       return Result.error(Exception('Unknown error: $e\nstack:$stack'));
+    }
+  }
+}
+
+class SupabaseCallAdapter<T> extends CallAdapter<Future<T>, Future<Result<T>>> {
+  @override
+  Future<Result<T>> adapt(Future<T> Function() call) async {
+    try {
+      final T response = await call();
+      return Result.ok(response);
+    } on AuthException catch (e) {
+      return Result.error(e);
+    } on Exception catch (e, stack) {
+      return Result.error(
+        Exception('Unknown Supabase error: $e\nstack:$stack'),
+      );
     }
   }
 }
