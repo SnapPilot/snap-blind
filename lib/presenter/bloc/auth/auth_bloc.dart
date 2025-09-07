@@ -67,6 +67,9 @@ final class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
         emit(
           LoginSuccessState(
             event.userEntity.copyWith(email: supabaseResponse.user?.email),
+            event.authTokenEntity.copyWith(
+              accessToken: supabaseResponse.session?.accessToken,
+            ),
           ),
         );
       },
@@ -97,6 +100,9 @@ final class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
               loginType: LoginType.email,
               profileImage: '',
               nickName: '',
+            ),
+            AuthTokenEntity(
+              accessToken: supabaseResponse.session?.accessToken ?? '',
             ),
           ),
         );

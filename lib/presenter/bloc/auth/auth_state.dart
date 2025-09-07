@@ -47,8 +47,14 @@ final class KaKaoLoginSuccessState extends AuthState {
 
 @immutable
 final class LoginSuccessState extends AuthState {
-  const LoginSuccessState(UserEntity userEntity)
-    : super(stateType: BaseStateType.success, userEntity: userEntity);
+  const LoginSuccessState(
+    UserEntity userEntity,
+    AuthTokenEntity authTokenEntity,
+  ) : super(
+        stateType: BaseStateType.success,
+        userEntity: userEntity,
+        authTokenEntity: authTokenEntity,
+      );
 }
 
 @immutable
