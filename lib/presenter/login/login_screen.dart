@@ -11,14 +11,18 @@ import 'package:snap_blind/presenter/const/asset_const.dart';
 import 'package:snap_blind/presenter/theme/app_colors.dart';
 import 'package:snap_blind/presenter/theme/app_text_style.dart';
 
+part 'widget/kakao_login_btn.dart';
+part 'widget/login_app_logo_area.dart';
+part 'widget/login_scaffold.dart';
+
 final class LoginScreen extends BaseScreen<AuthBloc, AuthState> {
   const LoginScreen({super.key});
 
   @override
   Widget buildScreen(BuildContext context, AuthState state) {
-    return const Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [Spacer(), _AppLogoArea(), Spacer(), _KaKaoLoginBtn()],
+    return const _Scaffold(
+      appLogoArea: _LoginAppLogoArea(),
+      kakaoLoginButton: _KaKaoLoginBtn(),
     );
   }
 
@@ -44,39 +48,4 @@ final class LoginScreen extends BaseScreen<AuthBloc, AuthState> {
 
   @override
   Color? get unSafeAreaColor => AppColors.white;
-}
-
-final class _AppLogoArea extends StatelessWidget {
-  const _AppLogoArea();
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Center(child: SvgPicture.asset(AssetConst.appLogoPath)),
-        const SizedBox(height: 16),
-        Text(
-          '5060 소개팅 매칭 서비스',
-          style: AppTextStyle.m20.copyWith(color: AppColors.cGray600),
-        ),
-      ],
-    );
-  }
-}
-
-final class _KaKaoLoginBtn extends StatelessWidget {
-  const _KaKaoLoginBtn();
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-      child: GestureDetector(
-        onTap: () {
-          context.read<AuthBloc>().add(KaKaoLoginRequestEvent());
-        },
-        child: Image.asset(AssetConst.kakaoLoginBtnPath),
-      ),
-    );
-  }
 }
