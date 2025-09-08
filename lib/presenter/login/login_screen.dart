@@ -30,6 +30,16 @@ final class LoginScreen extends BaseScreen<AuthBloc, AuthState> {
   void onStateChanged(BuildContext context, AuthState state) {
     if (state is LoginSuccessState) {
       context.go(AppRoute.home.path);
+      return;
+    }
+
+    if (state is KaKaoLoginSuccessState) {
+      context.read<AuthBloc>().add(
+        LoginRequestEvent(
+          userEntity: state.userEntity!,
+          authTokenEntity: state.authTokenEntity!,
+        ),
+      );
     }
   }
 

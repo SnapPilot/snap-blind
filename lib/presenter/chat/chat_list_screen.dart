@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:snap_blind/core/router/route_enum.dart';
 import 'package:snap_blind/presenter/base/base_screen.dart';
-import 'package:snap_blind/presenter/bloc/recipe/recipe_bloc.dart';
-import 'package:snap_blind/presenter/bloc/recipe/recipe_state.dart';
+import 'package:snap_blind/presenter/bloc/auth/auth_bloc.dart';
+import 'package:snap_blind/presenter/bloc/auth/auth_state.dart';
 import 'package:snap_blind/presenter/const/string_const.dart';
 import 'package:snap_blind/presenter/theme/app_colors.dart';
 import 'package:snap_blind/presenter/theme/app_text_style.dart';
 import 'package:snap_blind/presenter/widget/app_divider.dart';
 import 'package:snap_blind/presenter/widget/profile_list_tile.dart';
 
-final class ChatListScreen extends BaseScreen<RecipeBloc, RecipeState> {
+final class ChatListScreen extends BaseScreen<AuthBloc, AuthState> {
   const ChatListScreen({super.key});
 
   @override
-  Widget buildScreen(BuildContext context, RecipeState state) {
+  Widget buildScreen(BuildContext context, AuthState state) {
     return Column(
       children: [
         const AppDivider(),

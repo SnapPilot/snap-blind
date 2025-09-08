@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
+import 'package:snap_blind/domain/auth/entity/auth_token_entity.dart';
+import 'package:snap_blind/domain/auth/entity/user_entity.dart';
 
 @immutable
 sealed class AuthEvent extends Equatable {
@@ -10,7 +12,18 @@ sealed class AuthEvent extends Equatable {
 }
 
 @immutable
-final class LoginRequestEvent extends AuthEvent {}
+final class LoginRequestEvent extends AuthEvent {
+  const LoginRequestEvent({
+    required this.userEntity,
+    required this.authTokenEntity,
+  });
+
+  final UserEntity userEntity;
+  final AuthTokenEntity authTokenEntity;
+}
 
 @immutable
 final class LogoutRequestEvent extends AuthEvent {}
+
+@immutable
+final class KaKaoLoginRequestEvent extends AuthEvent {}

@@ -9,7 +9,7 @@ final class _KaKaoLoginBtn extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
       child: GestureDetector(
         onTap: () {
-          context.read<AuthBloc>().add(LoginRequestEvent());
+          context.read<AuthBloc>().add(KaKaoLoginRequestEvent());
         },
         child: Image.asset(AssetConst.kakaoLoginBtnPath),
       ),
