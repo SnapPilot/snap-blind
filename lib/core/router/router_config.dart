@@ -9,9 +9,11 @@ import 'package:snap_blind/presenter/my/my_info_screen.dart';
 import 'package:snap_blind/presenter/widget/app_bottom_navigation_bar.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
+
 GlobalKey<NavigatorState> get rootNavigatorKey => _rootNavigatorKey;
 
 GoRouter? _goRouter;
+
 GoRouter? get goRouter => _goRouter;
 
 void createRouter({String? initialLocation}) {
@@ -70,6 +72,12 @@ void createRouter({String? initialLocation}) {
         path: AppRoute.chat.path,
         builder: (context, state) {
           return const ChatScreen();
+        },
+      ),
+      GoRoute(
+        path: AppRoute.adminLogin.path,
+        builder: (context, state) {
+          return const AdminLoginScreen();
         },
       ),
     ],

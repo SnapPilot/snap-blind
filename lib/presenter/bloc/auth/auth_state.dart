@@ -64,3 +64,8 @@ final class SupabaseLoginFailureState extends AuthState {
 
   final String message;
 }
+
+final class AdminLoginSuccessState extends AuthState {
+  const AdminLoginSuccessState(UserEntity userEntity)
+    : super(stateType: BaseStateType.success, userEntity: userEntity);
+}
