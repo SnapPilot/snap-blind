@@ -1,1 +1,1 @@
-enum LoginType { kakao }
+enum LoginType { kakao, email }

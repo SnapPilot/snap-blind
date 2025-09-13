@@ -1,10 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:snap_blind/core/enum/login_type.dart';
 import 'package:snap_blind/core/error/result.dart';
 import 'package:snap_blind/core/extension/result_extension.dart';
 import 'package:snap_blind/data/auth/repository/supabase_auth_repository.dart';
-import 'package:snap_blind/domain/auth/entity/auth_token_entity.dart';
 import 'package:snap_blind/data/auth/response/oauth_api_response.dart';
+import 'package:snap_blind/domain/auth/entity/auth_token_entity.dart';
 import 'package:snap_blind/domain/auth/entity/user_entity.dart';
 import 'package:snap_blind/domain/auth/repository/auth_repository.dart';
 import 'package:snap_blind/presenter/base/base_bloc.dart';
@@ -19,10 +21,14 @@ final class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
     : super(const AuthState()) {
     on<KaKaoLoginRequestEvent>(_onKaKaoLogin);
     on<LoginRequestEvent>(_onLogin);
+    on<AdminLoginRequestEvent>(_onAdminLogin);
   }
 
   final AuthRepository _oAuthRepository;
   final SupabaseAuthRepository _supabaseAuthRepository;
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   /// app TODO: 이벤트 버스 패턴 적용
   void _onKaKaoLogin(
@@ -66,5 +72,41 @@ final class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
         emit(SupabaseLoginFailureState(message: error.toString()));
       },
     );
+  }
+
+  void _onAdminLogin(
+    AdminLoginRequestEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    final Result<supabase.AuthResponse> supabaseAuthResponse =
+        await _supabaseAuthRepository.loginWithEmail(
+          email: event.email,
+          password: event.password,
+        );
+
+    supabaseAuthResponse.when(
+      ok: (supabaseResponse) {
+        print("a");
+        emit(
+          LoginSuccessState(
+            UserEntity(
+              email: supabaseResponse.user?.email ?? '',
+              socialId: null,
+              loginType: LoginType.email,
+            ),
+          ),
+        );
+      },
+      exception: (error) {
+        print(error.toString());
+      },
+    );
+  }
+
+  @override
+  Future<void> close() {
+    emailController.dispose();
+    passwordController.dispose();
+    return super.close();
   }
 }
