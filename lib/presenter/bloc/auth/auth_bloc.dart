@@ -41,7 +41,7 @@ final class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
         await _oAuthRepository.login();
 
     authApiResponse.when(
-      ok: (authApiResponse) {
+      ok: (authApiResponse) async {
         final UserEntity userEntity = authApiResponse.userEntity;
         final AuthTokenEntity authTokenEntity = authApiResponse.authTokenEntity;
 
@@ -86,7 +86,6 @@ final class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
 
     supabaseAuthResponse.when(
       ok: (supabaseResponse) {
-        print("a");
         emit(
           LoginSuccessState(
             UserEntity(
