@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:snap_blind/core/di/di.dart';
 import 'package:snap_blind/core/enum/login_type.dart';
 import 'package:snap_blind/core/error/result.dart';
 import 'package:snap_blind/core/extension/result_extension.dart';
+import 'package:snap_blind/core/logger/app_logger.dart';
 import 'package:snap_blind/data/auth/repository/supabase_auth_repository.dart';
 import 'package:snap_blind/data/auth/response/oauth_api_response.dart';
 import 'package:snap_blind/domain/auth/entity/auth_token_entity.dart';
@@ -92,12 +94,14 @@ final class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
               email: supabaseResponse.user?.email ?? '',
               socialId: null,
               loginType: LoginType.email,
+              profileImage: '',
+              nickName: '',
             ),
           ),
         );
       },
       exception: (error) {
-        print(error.toString());
+        getIt<AppLogger>().error(error.toString());
       },
     );
   }
