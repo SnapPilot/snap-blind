@@ -67,4 +67,10 @@ final class AdminLoginScreen extends BaseScreen<AuthBloc, AuthState> {
       ),
     );
   }
+
+  @override
+  bool get wrapWithSafeArea => true;
+
+  @override
+  Color? get unSafeAreaColor => AppColors.white;
 }
