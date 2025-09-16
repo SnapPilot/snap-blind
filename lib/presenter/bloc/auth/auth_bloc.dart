@@ -95,6 +95,8 @@ final class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
               email: supabaseResponse.user?.email ?? '',
               socialId: null,
               loginType: LoginType.email,
+              profileImage: '',
+              nickName: '',
             ),
           ),
         );

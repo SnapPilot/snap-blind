@@ -14,29 +14,37 @@ abstract base class BaseScreen<
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<B>(
-      create: (_) {
-        final B bloc = GetIt.I<B>();
-        onBlocCreated(bloc);
-        return bloc;
+    final Widget child = BlocConsumer<B, S>(
+      listener: onStateChanged,
+      builder: (context, state) {
+        return Container(
+          color: unSafeAreaColor,
+          child:
+              wrapWithSafeArea
+                  ? SafeArea(
+                    top: setTopSafeArea,
+                    bottom: setBottomSafeArea,
+                    child: _buildScaffold(context, state),
+                  )
+                  : _buildScaffold(context, state),
+        );
       },
-      child: BlocConsumer<B, S>(
-        listener: onStateChanged,
-        builder: (context, state) {
-          return Container(
-            color: unSafeAreaColor,
-            child:
-                wrapWithSafeArea
-                    ? SafeArea(
-                      top: setTopSafeArea,
-                      bottom: setBottomSafeArea,
-                      child: _buildScaffold(context, state),
-                    )
-                    : _buildScaffold(context, state),
-          );
-        },
-      ),
     );
+
+    B? bloc = context.read<B?>();
+
+    if (createNewBlocInstance || bloc == null) {
+      return BlocProvider<B>(
+        create: (_) {
+          final B bloc = GetIt.I<B>();
+          onBlocCreated(bloc);
+          return bloc;
+        },
+        child: child,
+      );
+    }
+
+    return BlocProvider.value(value: bloc, child: child);
   }
 
   Widget _buildScaffold(BuildContext context, S state) {
@@ -109,6 +117,9 @@ abstract base class BaseScreen<
 
   @protected
   bool get showErrorPage => true;
+
+  @protected
+  bool get createNewBlocInstance => true;
 
   @protected
   void onBlocCreated(B bloc) {}

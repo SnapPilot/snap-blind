@@ -1,19 +1,21 @@
 import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:snap_blind/core/router/route_enum.dart';
 import 'package:snap_blind/core/router/router_config.dart';
+import 'package:snap_blind/presenter/bloc/auth/auth_bloc.dart';
 import 'package:snap_blind/presenter/theme/app_colors.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'core/di/di.dart';
 import 'core/env/app_env.dart';
-import 'core/error/error_handler.dart';
-
 import 'core/env/mobile_env.dart'
     if (dart.library.html) 'core/env/web_env.dart';
+import 'core/error/error_handler.dart';
 
 void main() {
   runZonedGuarded(() async {
@@ -41,7 +43,14 @@ void main() {
 
     createRouter(initialLocation: AppRoute.login.path);
 
-    runApp(const MyApp());
+    runApp(
+      MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => getIt<AuthBloc>(), lazy: false),
+        ],
+        child: const MyApp(),
+      ),
+    );
   }, ErrorHandler.handleUncaughtError);
 }
 
