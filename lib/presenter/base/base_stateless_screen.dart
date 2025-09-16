@@ -12,7 +12,7 @@ abstract class BaseStatelessScreen extends StatelessWidget {
               ? () => FocusManager.instance.primaryFocus?.unfocus()
               : null,
       child: Container(
-        color: unSafeAreaColor(context),
+        color: unSafeAreaColor,
         child:
             wrapWithSafeArea
                 ? SafeArea(
@@ -31,7 +31,7 @@ abstract class BaseStatelessScreen extends StatelessWidget {
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       appBar: buildAppBar(context),
       body: buildScreen(context),
-      backgroundColor: screenBackgroundColor(context),
+      backgroundColor: screenBackgroundColor,
       bottomNavigationBar: buildBottomNavigationBar(context),
       floatingActionButtonLocation: floatingActionButtonLocation,
       floatingActionButton: buildFloatingActionButton(context),
@@ -56,7 +56,7 @@ abstract class BaseStatelessScreen extends StatelessWidget {
 
   /// 뷰의 안전 영역 밖의 배경색을 설정
   @protected
-  Color? unSafeAreaColor(BuildContext context) => AppColors.white;
+  Color? get unSafeAreaColor => AppColors.white;
 
   /// 키보드가 화면 하단에 올라왔을 때 페이지의 크기를 조정하는 여부를 설정
   @protected
@@ -76,7 +76,7 @@ abstract class BaseStatelessScreen extends StatelessWidget {
 
   /// 화면의 배경색을 설정
   @protected
-  Color? screenBackgroundColor(BuildContext context) => AppColors.white;
+  Color? get screenBackgroundColor => AppColors.white;
 
   /// SafeArea로 감싸는 여부를 설정
   @protected
