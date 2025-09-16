@@ -51,4 +51,7 @@ final class LoginScreen extends BaseScreen<AuthBloc, AuthState> {
 
   @override
   Color? get unSafeAreaColor => AppColors.white;
+
+  @override
+  bool get createNewBlocInstance => false;
 }

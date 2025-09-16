@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:snap_blind/presenter/base/base_screen.dart';
 import 'package:snap_blind/presenter/base/base_state.dart';
+import 'package:snap_blind/presenter/base/base_stateless_screen.dart';
 import 'package:snap_blind/presenter/bloc/auth/auth_bloc.dart';
 import 'package:snap_blind/presenter/bloc/auth/auth_state.dart';
 import 'package:snap_blind/presenter/bloc/user/user_bloc.dart';
@@ -15,11 +16,11 @@ import 'package:snap_blind/presenter/theme/app_text_style.dart';
 import 'package:snap_blind/presenter/widget/app_divider.dart';
 import 'package:snap_blind/presenter/widget/labeled_text_form_field.dart';
 
-final class MyInfoScreen extends BaseScreen<AuthBloc, AuthState> {
+final class MyInfoScreen extends BaseStatelessScreen {
   const MyInfoScreen({super.key});
 
   @override
-  Widget buildScreen(BuildContext context, AuthState state) {
+  Widget buildScreen(BuildContext context) {
     return Column(
       children: [
         const _MyInfoArea(),
@@ -59,37 +60,51 @@ final class _MyInfoArea extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 22, horizontal: 16),
-      child: Row(
-        children: [
-          const Icon(Icons.account_circle_outlined, size: 56),
-          const SizedBox(width: 16),
-          Text(
-            StringConst.anonymous,
-            style: AppTextStyle.sb20.copyWith(color: AppColors.black),
-          ),
-          const Spacer(),
-          GestureDetector(
-            onTap: () {
-              const _UserInfoEditBottomSheet().showEditProfileBottomSheet(
-                context,
-              );
-            },
-            child: Container(
-              width: 106,
-              height: 40,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                color: AppColors.cGray50,
-              ),
-              child: Center(
-                child: Text(
-                  StringConst.editProfile,
-                  style: AppTextStyle.m16.copyWith(color: AppColors.cGray700),
+      child: BlocConsumer<AuthBloc, AuthState>(
+        builder: (BuildContext context, AuthState state) {
+          return Row(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(999),
+                child: Image.network(
+                  state.userEntity?.profileImage ?? '',
+                  width: 56,
+                  height: 56,
                 ),
               ),
-            ),
-          ),
-        ],
+              const SizedBox(width: 16),
+              Text(
+                state.userEntity?.nickName ?? StringConst.anonymous,
+                style: AppTextStyle.sb20.copyWith(color: AppColors.black),
+              ),
+              const Spacer(),
+              GestureDetector(
+                onTap: () {
+                  const _UserInfoEditBottomSheet().showEditProfileBottomSheet(
+                    context,
+                  );
+                },
+                child: Container(
+                  width: 106,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    color: AppColors.cGray50,
+                  ),
+                  child: Center(
+                    child: Text(
+                      StringConst.editProfile,
+                      style: AppTextStyle.m16.copyWith(
+                        color: AppColors.cGray700,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
+        listener: (BuildContext context, AuthState state) {},
       ),
     );
   }

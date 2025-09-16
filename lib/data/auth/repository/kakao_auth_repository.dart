@@ -4,9 +4,9 @@ import 'package:snap_blind/core/enum/login_type.dart';
 import 'package:snap_blind/core/error/result.dart';
 import 'package:snap_blind/core/extension/result_extension.dart';
 import 'package:snap_blind/data/auth/exception/kakao_exception.dart';
+import 'package:snap_blind/data/auth/response/oauth_api_response.dart';
 import 'package:snap_blind/data/auth/source/kakao_auth_data_source.dart';
 import 'package:snap_blind/domain/auth/entity/auth_token_entity.dart';
-import 'package:snap_blind/data/auth/response/oauth_api_response.dart';
 import 'package:snap_blind/domain/auth/entity/user_entity.dart';
 import 'package:snap_blind/domain/auth/repository/auth_repository.dart';
 
@@ -31,6 +31,8 @@ final class KaKaoAuthRepository implements AuthRepository {
           socialId: user.id,
           loginType: LoginType.kakao,
           email: user.kakaoAccount?.email ?? '',
+          profileImage: user.properties?['profile_image'] ?? '',
+          nickName: user.properties?['nickname'] ?? '',
         );
 
         return Result.ok(
