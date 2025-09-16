@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import 'package:snap_blind/presenter/base/base_screen.dart';
-import 'package:snap_blind/presenter/bloc/auth/auth_bloc.dart';
-import 'package:snap_blind/presenter/bloc/auth/auth_state.dart';
+import 'package:snap_blind/presenter/base/base_stateless_screen.dart';
 import 'package:snap_blind/presenter/const/asset_const.dart';
 import 'package:snap_blind/presenter/const/string_const.dart';
 import 'package:snap_blind/presenter/theme/app_colors.dart';
@@ -11,11 +8,11 @@ import 'package:snap_blind/presenter/theme/app_text_style.dart';
 import 'package:snap_blind/presenter/widget/app_button.dart';
 import 'package:snap_blind/presenter/widget/profile_list_tile.dart';
 
-final class HomeScreen extends BaseScreen<AuthBloc, AuthState> {
+final class HomeScreen extends BaseStatelessScreen {
   const HomeScreen({super.key});
 
   @override
-  Widget buildScreen(BuildContext context, AuthState state) {
+  Widget buildScreen(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
