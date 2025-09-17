@@ -1,4 +1,4 @@
-part of 'screen/home_screen.dart';
+part of '../screen/home_screen.dart';
 
 final class _PartnerInfoArea extends StatelessWidget {
   const _PartnerInfoArea();

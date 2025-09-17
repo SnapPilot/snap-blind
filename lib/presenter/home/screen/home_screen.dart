@@ -14,8 +14,8 @@ import 'package:snap_blind/presenter/widget/app_circular_progress_indicator.dart
 import 'package:snap_blind/presenter/widget/app_error_widget.dart';
 import 'package:snap_blind/presenter/widget/profile_list_tile.dart';
 
-part '../partner_info_area.dart';
 part '../scaffold/home_scaffold.dart';
+part '../widget/partner_info_area.dart';
 
 final class HomeScreen extends BaseScreen<HomeBloc, HomeState> {
   const HomeScreen({super.key});
