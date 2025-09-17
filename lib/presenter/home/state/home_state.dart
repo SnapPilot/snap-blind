@@ -1,78 +1,39 @@
 import 'package:flutter/foundation.dart';
-import 'package:snap_blind/domain/auth/entity/auth_token_entity.dart';
-import 'package:snap_blind/domain/auth/entity/user_entity.dart';
-import 'package:snap_blind/presenter/auth/auth_state.dart';
+import 'package:snap_blind/domain/match/entity/partner_entity.dart';
 import 'package:snap_blind/presenter/base/base_state.dart';
 
 @immutable
 base class HomeState extends BaseState {
-  const HomeState({
-    super.stateType,
-    super.errorMessage,
-    this.userEntity,
-    this.authTokenEntity,
-  });
-
-  final UserEntity? userEntity;
-  final AuthTokenEntity? authTokenEntity;
+  const HomeState({super.errorMessage});
 
   @override
-  List<Object?> get props => [...super.props, userEntity, authTokenEntity];
-
-  AuthState copyWith({
-    UserEntity? userEntity,
-    AuthTokenEntity? authTokenEntity,
-    BaseStateType? stateType,
-    String? errorMessage,
-  }) {
-    return AuthState(
-      stateType: stateType ?? this.stateType,
-      errorMessage: errorMessage ?? this.errorMessage,
-      userEntity: userEntity ?? this.userEntity,
-      authTokenEntity: authTokenEntity ?? this.authTokenEntity,
-    );
-  }
+  List<Object?> get props => [...super.props];
 }
 
 @immutable
-final class KaKaoLoginSuccessState extends AuthState {
-  const KaKaoLoginSuccessState(
-    UserEntity userEntity,
-    AuthTokenEntity authTokenEntity,
-  ) : super(
-        stateType: BaseStateType.success,
-        userEntity: userEntity,
-        authTokenEntity: authTokenEntity,
-      );
+final class PartnerProfileLoadSuccess extends HomeState {
+  const PartnerProfileLoadSuccess(this.partner);
+
+  final PartnerEntity partner;
+
+  @override
+  List<Object?> get props => [partner];
 }
 
 @immutable
-final class LoginSuccessState extends AuthState {
-  const LoginSuccessState(
-    UserEntity userEntity,
-    AuthTokenEntity authTokenEntity,
-  ) : super(
-        stateType: BaseStateType.success,
-        userEntity: userEntity,
-        authTokenEntity: authTokenEntity,
-      );
+final class TodayNotMatched extends HomeState {
+  const TodayNotMatched();
 }
 
 @immutable
-final class KaKaoLoginFailureState extends AuthState {
-  const KaKaoLoginFailureState({this.message = ""});
+final class PartnerProfileLoadFailure extends HomeState {
+  const PartnerProfileLoadFailure({super.errorMessage});
 
-  final String message;
+  @override
+  List<Object?> get props => [...super.props];
 }
 
 @immutable
-final class SupabaseLoginFailureState extends AuthState {
-  const SupabaseLoginFailureState({this.message = ""});
-
-  final String message;
-}
-
-final class AdminLoginSuccessState extends AuthState {
-  const AdminLoginSuccessState(UserEntity userEntity)
-    : super(stateType: BaseStateType.success, userEntity: userEntity);
+final class PartnerProfileLoading extends HomeState {
+  const PartnerProfileLoading();
 }

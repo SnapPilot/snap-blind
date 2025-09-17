@@ -23,4 +23,5 @@ abstract final class StringConst {
   static const String ageInputErrorMessage = '올바른 나이를 입력해주세요.';
   static const String male = '남';
   static const String female = '여';
+  static const String matchLoadFailureMessage = '매칭 정보를 불러오지 못했습니다.';
 }
