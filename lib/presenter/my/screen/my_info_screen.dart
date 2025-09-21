@@ -1,12 +1,14 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:snap_blind/presenter/auth/auth_bloc.dart';
 import 'package:snap_blind/presenter/auth/auth_state.dart';
 import 'package:snap_blind/presenter/base/base_screen.dart';
 import 'package:snap_blind/presenter/base/base_state.dart';
 import 'package:snap_blind/presenter/base/base_stateless_screen.dart';
+import 'package:snap_blind/presenter/const/asset_const.dart';
 import 'package:snap_blind/presenter/const/string_const.dart';
 import 'package:snap_blind/presenter/theme/app_colors.dart';
 import 'package:snap_blind/presenter/theme/app_text_style.dart';
@@ -20,6 +22,7 @@ part '../scaffold/my_info_scaffold.dart';
 part '../widget/menu_item.dart';
 part '../widget/menu_item_area.dart';
 part '../widget/my_info_area.dart';
+part '../widget/my_info_coin_button.dart';
 part '../widget/user_info_edit_bottom_sheet.dart';
 
 final class MyInfoScreen extends BaseStatelessScreen {
@@ -29,6 +32,7 @@ final class MyInfoScreen extends BaseStatelessScreen {
   Widget buildScreen(BuildContext context) {
     return const _Scaffold(
       myInfoArea: _MyInfoArea(),
+      coinButton: _MyInfoCoinButton(),
       menuItemArea: _MenuItemArea(),
     );
   }

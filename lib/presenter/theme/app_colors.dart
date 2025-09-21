@@ -4,6 +4,7 @@ abstract final class AppColors {
   static const white = Color(0xFFFFFFFF);
   static const black = Color(0xFF000000);
   static const primary = Color(0xFFEC616F);
+  static const primarySecondary = Color(0xFFFFE3E6);
   static const indigoBlue = Color(0xFF6A70F7);
   static const green = Color(0xFF259C72);
   static const cGray50 = Color(0xFFF7F8F9);

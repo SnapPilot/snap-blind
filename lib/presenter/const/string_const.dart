@@ -31,4 +31,6 @@ abstract final class StringConst {
   static const String todayNotMatchedSubTitle = '내일의 이성매칭을 기대해주세요!';
   static const String todayNotMatchedInfo =
       '랜덤으로 이성이 매칭되기 때문에 남녀 비율이 맞지 않아 매칭되지 않는 경우도 발생합니다.';
+  static const String chatCostInfo = '채팅 1건당 코인 2개';
+  static const String buyCoin = '코인 구매하기';
 }

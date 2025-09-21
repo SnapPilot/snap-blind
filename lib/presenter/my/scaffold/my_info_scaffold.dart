@@ -1,9 +1,14 @@
 part of '../screen/my_info_screen.dart';
 
 final class _Scaffold extends StatelessWidget {
-  const _Scaffold({required this.myInfoArea, required this.menuItemArea});
+  const _Scaffold({
+    required this.myInfoArea,
+    required this.coinButton,
+    required this.menuItemArea,
+  });
 
   final Widget myInfoArea;
+  final Widget coinButton;
   final Widget menuItemArea;
 
   @override
@@ -11,6 +16,7 @@ final class _Scaffold extends StatelessWidget {
     return Column(
       children: [
         myInfoArea,
+        coinButton,
         const AppDivider(thickness: 8, color: AppColors.cGray50),
         menuItemArea,
         Expanded(
