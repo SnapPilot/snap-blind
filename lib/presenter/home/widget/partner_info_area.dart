@@ -19,9 +19,8 @@ final class _PartnerInfoArea extends StatelessWidget {
         const SizedBox(height: 4),
         ProfileListTile(
           imageUrl: state.partner.profileUrl,
-          title: '${state.partner.nickname}(나이)',
-          subtitle:
-              '설명 어쩌구 저쩌구 최대 두줄 설명 어쩌구 저쩌구 최대 두줄설명 어쩌구 저쩌구 최대 두줄설명 어쩌구 저쩌구 최대 두줄',
+          title: '${state.partner.nickname}${state.partner.getAge}',
+          subtitle: state.partner.intro,
         ),
       ],
     );
