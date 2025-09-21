@@ -8,6 +8,7 @@ abstract final class StringConst {
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
   static const String myInfo = '내 정보';
   static const String settingAlarm = '알림 설정';
+  static const String settingInquiry = '문의 하기';
   static const String anonymous = '익명';
   static const String editProfile = '프로필 수정';
   static const String nickName = '닉네임';

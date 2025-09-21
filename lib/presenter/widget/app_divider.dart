@@ -6,13 +6,20 @@ final class AppDivider extends StatelessWidget {
     super.key,
     this.thickness,
     this.color = AppColors.cGray200,
+    this.indent,
   });
 
   final double? thickness;
   final Color color;
+  final double? indent;
 
   @override
   Widget build(BuildContext context) {
-    return Divider(color: color, thickness: thickness);
+    return Divider(
+      color: color,
+      thickness: thickness,
+      indent: indent,
+      endIndent: indent,
+    );
   }
 }

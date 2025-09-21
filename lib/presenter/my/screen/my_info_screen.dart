@@ -17,8 +17,9 @@ import 'package:snap_blind/presenter/widget/app_divider.dart';
 import 'package:snap_blind/presenter/widget/labeled_text_form_field.dart';
 
 part '../scaffold/my_info_scaffold.dart';
-part '../widget/my_info_area.dart';
 part '../widget/menu_item.dart';
+part '../widget/menu_item_area.dart';
+part '../widget/my_info_area.dart';
 part '../widget/user_info_edit_bottom_sheet.dart';
 
 final class MyInfoScreen extends BaseStatelessScreen {
@@ -26,9 +27,9 @@ final class MyInfoScreen extends BaseStatelessScreen {
 
   @override
   Widget buildScreen(BuildContext context) {
-    return _Scaffold(
-      myInfoArea: const _MyInfoArea(),
-      menuItemArea: _MenuItem(text: StringConst.settingAlarm, onTap: () {}),
+    return const _Scaffold(
+      myInfoArea: _MyInfoArea(),
+      menuItemArea: _MenuItemArea(),
     );
   }
 
