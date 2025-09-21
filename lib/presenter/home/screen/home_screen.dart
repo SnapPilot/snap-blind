@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:snap_blind/presenter/auth/auth_bloc.dart';
 import 'package:snap_blind/presenter/base/base_screen.dart';
 import 'package:snap_blind/presenter/const/asset_const.dart';
 import 'package:snap_blind/presenter/const/string_const.dart';
@@ -16,6 +17,7 @@ import 'package:snap_blind/presenter/widget/profile_list_tile.dart';
 
 part '../scaffold/home_scaffold.dart';
 part '../widget/partner_info_area.dart';
+part '../widget/today_not_macthed_area.dart';
 
 final class HomeScreen extends BaseScreen<HomeBloc, HomeState> {
   const HomeScreen({super.key});
@@ -37,6 +39,7 @@ final class HomeScreen extends BaseScreen<HomeBloc, HomeState> {
       PartnerProfileLoadFailure(:final String errorMessage) => AppErrorWidget(
         errorMessage,
       ),
+      TodayNotMatched() => const _TodayNotMatchedArea(),
       _ => const SizedBox.shrink(),
     };
   }

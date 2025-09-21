@@ -75,6 +75,12 @@ abstract final class AppTextStyle {
     height: 1.44,
   );
 
+  static const m17 = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 17,
+    height: 1.38,
+  );
+
   static const m16 = TextStyle(
     fontWeight: FontWeight.w500,
     fontSize: 16,

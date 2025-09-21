@@ -24,4 +24,10 @@ abstract final class StringConst {
   static const String male = '남';
   static const String female = '여';
   static const String matchLoadFailureMessage = '매칭 정보를 불러오지 못했습니다.';
+
+  static String todayNotMatchedTitle(String nickName) =>
+      '모든 이성이 매칭되어, 오늘은 $nickName님께 이성이 매칭되지 못했습니다.';
+  static const String todayNotMatchedSubTitle = '내일의 이성매칭을 기대해주세요!';
+  static const String todayNotMatchedInfo =
+      '랜덤으로 이성이 매칭되기 때문에 남녀 비율이 맞지 않아 매칭되지 않는 경우도 발생합니다.';
 }

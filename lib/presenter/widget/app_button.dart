@@ -3,10 +3,16 @@ import 'package:snap_blind/presenter/theme/app_colors.dart';
 import 'package:snap_blind/presenter/theme/app_text_style.dart';
 
 class AppButton extends StatelessWidget {
-  const AppButton({super.key, this.onTap, required this.buttonText});
+  const AppButton({
+    super.key,
+    this.onTap,
+    this.backgroundColor,
+    required this.buttonText,
+  });
 
   final VoidCallback? onTap;
   final String buttonText;
+  final Color? backgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +22,7 @@ class AppButton extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 16),
         decoration: BoxDecoration(
-          color: AppColors.primary,
+          color: backgroundColor ?? AppColors.primary,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Text(
