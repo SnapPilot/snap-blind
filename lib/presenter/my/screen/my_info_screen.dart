@@ -23,6 +23,7 @@ part '../widget/menu_item.dart';
 part '../widget/menu_item_area.dart';
 part '../widget/my_info_area.dart';
 part '../widget/my_info_coin_button.dart';
+part '../widget/profile_avatar.dart';
 part '../widget/user_info_edit_bottom_sheet.dart';
 
 final class MyInfoScreen extends BaseStatelessScreen {

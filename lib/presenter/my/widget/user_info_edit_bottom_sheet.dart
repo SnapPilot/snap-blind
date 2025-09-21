@@ -35,6 +35,7 @@ final class _UserInfoEditBottomSheet
 
     return showModalBottomSheet(
       context: context,
+      useRootNavigator: true,
       isScrollControlled: true,
       backgroundColor: AppColors.white,
       constraints: BoxConstraints(maxHeight: size.height * 0.82),
@@ -104,8 +105,8 @@ final class _UserInfoEditBottomSheet
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 20),
-              const Icon(Icons.person, size: 56, color: Colors.black38),
-              const SizedBox(height: 24),
+              const _ProfileAvatarWidget(),
+              const SizedBox(height: 30),
               LabeledTextFormField(
                 textEditingController: userEditBloc.nameController,
                 label: StringConst.nickName,
