@@ -23,7 +23,7 @@ import 'package:snap_blind/data/auth/repository/supabase_auth_repository.dart'
 import 'package:snap_blind/data/auth/source/kakao_auth_data_source.dart'
     as _i41;
 import 'package:snap_blind/data/match/repository/match_repository_impl.dart'
-    as _i777;
+    as _i79;
 import 'package:snap_blind/data/match/source/supabase_match_data_source.dart'
     as _i95;
 import 'package:snap_blind/domain/auth/repository/auth_repository.dart'
@@ -66,7 +66,7 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i1012.MatchRepository>(
       () =>
-          _i777.MatchRepositoryImpl(source: gh<_i95.SupabaseMatchDataSource>()),
+          _i79.MatchRepositoryImpl(source: gh<_i95.SupabaseMatchDataSource>()),
     );
     gh.lazySingleton<_i382.AppLogger>(
       () => _i1068.ProdLogger(),

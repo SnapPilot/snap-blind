@@ -14,9 +14,17 @@ final class _UserInfoEditBottomSheet
   bool get showErrorPage => false;
 
   @override
+  void onBlocCreated(UserBloc bloc) {
+    bloc.add(const UserInitializeRequested());
+    super.onBlocCreated(bloc);
+  }
+
+  @override
   void onStateChanged(BuildContext context, UserEditState state) {
-    if (state.stateType == BaseStateType.success) {
-      context.pop();
+    if (state.stateType == BaseStateType.initial) {
+      context.read<UserBloc>().add(
+        UserInitialized(context.read<AuthBloc>().state.userEntity!),
+      );
       return;
     }
 

@@ -9,13 +9,27 @@ import 'package:snap_blind/presenter/user/user_state.dart';
 
 @injectable
 final class UserBloc extends BaseBloc<UserEditEvent, UserEditState> {
-  UserBloc() : super(const UserEditState()) {
+  UserBloc() : super(const UserEditState(stateType: BaseStateType.initial)) {
     on<UserUpdateRequested>(_onSubmit);
+    on<UserInitializeRequested>(_onInitializeRequest);
+    on<UserInitialized>(_onInitialize);
   }
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController ageController = TextEditingController();
   final TextEditingController introController = TextEditingController();
+
+  void _onInitializeRequest(
+    UserInitializeRequested event,
+    Emitter<UserEditState> emit,
+  ) {
+    emit(const UserEditState(stateType: BaseStateType.initial));
+  }
+
+  void _onInitialize(UserInitialized event, Emitter<UserEditState> emit) {
+    nameController.text = event.entity.nickName;
+    emit(const UserEditState());
+  }
 
   Future<void> _onSubmit(
     UserUpdateRequested event,
