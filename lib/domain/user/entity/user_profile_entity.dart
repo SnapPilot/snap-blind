@@ -1,0 +1,28 @@
+final class UserProfileEntity {
+  UserProfileEntity({
+    required this.userUid,
+    required this.nickname,
+    required this.intro,
+    required this.gender,
+    required this.photoUrl,
+    required this.birthDate,
+  });
+
+  final String userUid;
+  final String nickname;
+  final String intro;
+  final String gender;
+  final String photoUrl;
+  final DateTime birthDate;
+
+  int get age {
+    final now = DateTime.now();
+    int age = now.year - birthDate.year;
+
+    if (now.month < birthDate.month ||
+        (now.month == birthDate.month && now.day < birthDate.day)) {
+      age--;
+    }
+    return age;
+  }
+}

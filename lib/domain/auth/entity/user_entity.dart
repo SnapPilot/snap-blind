@@ -7,6 +7,8 @@ final class UserEntity {
     required this.email,
     required this.profileImage,
     required this.nickName,
+    required this.intro,
+    required this.age,
   });
 
   final int? socialId;
@@ -14,6 +16,8 @@ final class UserEntity {
   final String email;
   final String profileImage;
   final String nickName;
+  final String intro;
+  final int age;
 
   factory UserEntity.fromKaKao({
     required int socialId,
@@ -28,6 +32,8 @@ final class UserEntity {
       email: email,
       profileImage: profileImage,
       nickName: nickName,
+      intro: '',
+      age: 0,
     );
   }
 
@@ -37,6 +43,8 @@ final class UserEntity {
     String? email,
     String? profileImage,
     String? nickName,
+    String? intro,
+    int? age,
   }) {
     return UserEntity(
       socialId: socialId ?? this.socialId,
@@ -44,6 +52,8 @@ final class UserEntity {
       email: email ?? this.email,
       profileImage: profileImage ?? this.profileImage,
       nickName: nickName ?? this.nickName,
+      intro: intro ?? this.intro,
+      age: age ?? this.age,
     );
   }
 }
