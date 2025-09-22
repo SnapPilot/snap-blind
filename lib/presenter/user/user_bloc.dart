@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:snap_blind/domain/auth/entity/user_entity.dart';
 import 'package:snap_blind/presenter/base/base_bloc.dart';
 import 'package:snap_blind/presenter/base/base_state.dart';
 import 'package:snap_blind/presenter/const/string_const.dart';
@@ -27,29 +28,22 @@ final class UserBloc extends BaseBloc<UserEditEvent, UserEditState> {
   }
 
   void _onInitialize(UserInitialized event, Emitter<UserEditState> emit) {
-    nameController.text = event.entity.nickName;
-    emit(const UserEditState());
+    final UserEntity userEntity = event.entity;
+
+    nameController.text = userEntity.nickName;
+    ageController.text = userEntity.age.toString();
+    introController.text = userEntity.intro;
+    emit(UserEditState(userEntity: userEntity));
   }
 
   Future<void> _onSubmit(
     UserUpdateRequested event,
     Emitter<UserEditState> emit,
   ) async {
-    if ((state.age != null && (state.age! <= 0 || state.age! > 120))) {
-      emit(
-        state.copyWith(
-          stateType: BaseStateType.failure,
-          errorMessage: StringConst.ageInputErrorMessage,
-        ),
-      );
-      return;
-    }
-
     emit(state.copyWith(stateType: BaseStateType.inProgress));
 
     await Future.delayed(const Duration(seconds: 2));
-    // emit(const UserEditSuccess());
-    // return;
+
     emit(
       state.copyWith(
         stateType: BaseStateType.failure,

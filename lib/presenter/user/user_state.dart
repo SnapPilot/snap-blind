@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:snap_blind/domain/auth/entity/user_entity.dart';
 import 'package:snap_blind/presenter/base/base_state.dart';
 import 'package:snap_blind/presenter/const/string_const.dart';
 
@@ -15,6 +16,15 @@ enum Gender {
         return StringConst.female;
     }
   }
+
+  factory Gender.fromCode(String code) {
+    switch (code) {
+      case 'male':
+        return Gender.male;
+      default:
+        return Gender.female;
+    }
+  }
 }
 
 @immutable
@@ -22,37 +32,25 @@ final class UserEditState extends BaseState {
   const UserEditState({
     super.stateType = BaseStateType.success,
     super.errorMessage,
-    this.name,
-    this.gender,
-    this.age,
-    this.intro,
+    this.userEntity,
   });
 
-  final String? name;
-  final Gender? gender;
-  final int? age;
-  final String? intro;
+  final UserEntity? userEntity;
 
   UserEditState copyWith({
     BaseStateType? stateType,
     String? errorMessage,
-    String? name,
-    Gender? gender,
-    int? age,
-    String? intro,
+    UserEntity? userEntity,
   }) {
     return UserEditState(
       stateType: stateType ?? this.stateType,
       errorMessage: errorMessage ?? this.errorMessage,
-      name: name ?? this.name,
-      gender: gender ?? this.gender,
-      age: age ?? this.age,
-      intro: intro ?? this.intro,
+      userEntity: userEntity ?? this.userEntity,
     );
   }
 
   @override
-  List<Object?> get props => [...super.props, name, gender, age, intro];
+  List<Object?> get props => [...super.props, userEntity];
 }
 
 final class UserEditSuccess extends UserEditState {

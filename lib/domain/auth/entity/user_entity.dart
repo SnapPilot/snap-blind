@@ -1,4 +1,5 @@
 import 'package:snap_blind/core/enum/login_type.dart';
+import 'package:snap_blind/presenter/user/user_state.dart';
 
 final class UserEntity {
   UserEntity({
@@ -9,6 +10,7 @@ final class UserEntity {
     required this.nickName,
     required this.intro,
     required this.age,
+    required this.gender,
   });
 
   final int? socialId;
@@ -18,6 +20,7 @@ final class UserEntity {
   final String nickName;
   final String intro;
   final int age;
+  final Gender gender;
 
   factory UserEntity.fromKaKao({
     required int socialId,
@@ -33,6 +36,7 @@ final class UserEntity {
       profileImage: profileImage,
       nickName: nickName,
       intro: '',
+      gender: Gender.male,
       age: 0,
     );
   }
@@ -45,6 +49,7 @@ final class UserEntity {
     String? nickName,
     String? intro,
     int? age,
+    Gender? gender,
   }) {
     return UserEntity(
       socialId: socialId ?? this.socialId,
@@ -54,6 +59,7 @@ final class UserEntity {
       nickName: nickName ?? this.nickName,
       intro: intro ?? this.intro,
       age: age ?? this.age,
+      gender: gender ?? this.gender,
     );
   }
 }

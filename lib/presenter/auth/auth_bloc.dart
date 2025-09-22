@@ -17,6 +17,7 @@ import 'package:snap_blind/presenter/auth/auth_event.dart';
 import 'package:snap_blind/presenter/auth/auth_state.dart';
 import 'package:snap_blind/presenter/base/base_bloc.dart';
 import 'package:snap_blind/presenter/base/base_state.dart';
+import 'package:snap_blind/presenter/user/user_state.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
 @injectable
@@ -91,6 +92,7 @@ final class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
               nickName: userProfileEntity!.nickname,
               intro: userProfileEntity!.intro,
               age: userProfileEntity!.age,
+              gender: userProfileEntity!.gender,
             ),
             event.authTokenEntity.copyWith(
               accessToken: supabaseResponse.session?.accessToken,
@@ -128,6 +130,7 @@ final class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
               nickName: '',
               age: 0,
               intro: '',
+              gender: Gender.male,
             ),
             AuthTokenEntity(
               accessToken: supabaseResponse.session?.accessToken ?? '',

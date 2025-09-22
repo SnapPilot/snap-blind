@@ -1,3 +1,5 @@
+import 'package:snap_blind/presenter/user/user_state.dart';
+
 final class UserProfileEntity {
   UserProfileEntity({
     required this.userUid,
@@ -11,7 +13,7 @@ final class UserProfileEntity {
   final String userUid;
   final String nickname;
   final String intro;
-  final String gender;
+  final Gender gender;
   final String photoUrl;
   final DateTime birthDate;
 

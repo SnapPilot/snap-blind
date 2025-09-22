@@ -1,5 +1,6 @@
 import 'package:snap_blind/core/utils/typedef.dart';
 import 'package:snap_blind/domain/user/entity/user_profile_entity.dart';
+import 'package:snap_blind/presenter/user/user_state.dart';
 
 final class UserProfileResDto {
   UserProfileResDto({
@@ -14,7 +15,7 @@ final class UserProfileResDto {
   final String userUid;
   final String nickname;
   final String intro;
-  final String gender;
+  final Gender gender;
   final String photoUrl;
   final DateTime birthDate;
 
@@ -23,7 +24,7 @@ final class UserProfileResDto {
       userUid: json['user_id'],
       nickname: json['nickname'] ?? '',
       intro: json['intro'] ?? '',
-      gender: json['gender'],
+      gender: Gender.fromCode(json['gender']),
       photoUrl: json['photo_url'],
       birthDate: DateTime.parse(json['birth_date']),
     );
