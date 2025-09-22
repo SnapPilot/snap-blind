@@ -43,7 +43,29 @@ final class _MyInfoCoinButton extends StatelessWidget {
               ],
             ),
             const Spacer(),
-            SvgPicture.asset(AssetConst.coinIconPath, width: 20, height: 20),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: AppColors.cGray100,
+              ),
+              child: Row(
+                children: [
+                  SvgPicture.asset(
+                    AssetConst.coinIconPath,
+                    width: 20,
+                    height: 20,
+                  ),
+                  const SizedBox(width: 6),
+
+                  /// app TODO: 실제 코인 값으로 변경
+                  Text(
+                    '20개',
+                    style: AppTextStyle.m14.copyWith(color: AppColors.cGray900),
+                  ),
+                ],
+              ),
+            ),
             const SizedBox(width: 8),
             const Icon(Icons.chevron_right, color: AppColors.white, size: 32),
           ],

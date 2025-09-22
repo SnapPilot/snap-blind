@@ -21,7 +21,7 @@ final class _MenuItem extends StatelessWidget {
             const Spacer(),
             const Icon(
               Icons.arrow_forward_ios_outlined,
-              size: 14,
+              size: 28,
               color: AppColors.cGray400,
             ),
           ],
