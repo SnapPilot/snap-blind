@@ -111,11 +111,27 @@ final class _UserInfoEditBottomSheet
                 textEditingController: userEditBloc.nameController,
                 label: StringConst.nickName,
                 hintText: StringConst.nameHint,
+                isRequired: true,
               ),
               const SizedBox(height: 20),
-              Text(
-                StringConst.gender,
-                style: AppTextStyle.sb12.copyWith(color: AppColors.cGray600),
+              Row(
+                children: [
+                  Text(
+                    StringConst.gender,
+                    style: AppTextStyle.sb12.copyWith(
+                      color: AppColors.cGray600,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 2),
+                    child: Text(
+                      StringConst.star,
+                      style: AppTextStyle.sb12.copyWith(
+                        color: AppColors.redEF3F55,
+                      ),
+                    ),
+                  ),
+                ],
               ),
               DropdownButtonFormField2<Gender>(
                 value: state.gender,
@@ -167,6 +183,7 @@ final class _UserInfoEditBottomSheet
                 hintText: StringConst.ageHint,
                 onChanged: (v) {},
                 keyboardType: TextInputType.number,
+                isRequired: true,
               ),
               const SizedBox(height: 20),
               LabeledTextFormField(
@@ -174,6 +191,7 @@ final class _UserInfoEditBottomSheet
                 label: StringConst.intro,
                 hintText: StringConst.introHint,
                 onChanged: (v) {},
+                isRequired: true,
               ),
             ],
           ),
