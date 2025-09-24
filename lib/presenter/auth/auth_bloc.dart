@@ -18,7 +18,7 @@ import 'package:snap_blind/presenter/auth/auth_state.dart';
 import 'package:snap_blind/presenter/base/base_bloc.dart';
 import 'package:snap_blind/presenter/base/base_state.dart';
 import 'package:snap_blind/presenter/const/string_const.dart';
-import 'package:snap_blind/presenter/user/user_state.dart';
+import 'package:snap_blind/presenter/user/user_edit_state.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
 @injectable

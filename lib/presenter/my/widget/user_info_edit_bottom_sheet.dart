@@ -1,7 +1,7 @@
 part of '../screen/my_info_screen.dart';
 
 final class _UserInfoEditBottomSheet
-    extends BaseScreen<UserBloc, UserEditState> {
+    extends BaseScreen<UserEditBloc, UserEditState> {
   const _UserInfoEditBottomSheet();
 
   @override
@@ -14,7 +14,7 @@ final class _UserInfoEditBottomSheet
   bool get showErrorPage => false;
 
   @override
-  void onBlocCreated(UserBloc bloc) {
+  void onBlocCreated(UserEditBloc bloc) {
     bloc.add(const UserInitializeRequested());
     super.onBlocCreated(bloc);
   }
@@ -22,7 +22,7 @@ final class _UserInfoEditBottomSheet
   @override
   void onStateChanged(BuildContext context, UserEditState state) {
     if (state.stateType == BaseStateType.initial) {
-      context.read<UserBloc>().add(
+      context.read<UserEditBloc>().add(
         UserInitialized(context.read<AuthBloc>().state.userEntity!),
       );
       return;
@@ -65,7 +65,7 @@ final class _UserInfoEditBottomSheet
 
   @override
   Widget buildScreen(BuildContext context, UserEditState state) {
-    final UserBloc userEditBloc = context.read<UserBloc>();
+    final UserEditBloc userEditBloc = context.read<UserEditBloc>();
 
     return Column(
       children: [
@@ -167,7 +167,7 @@ final class _UserInfoEditBottomSheet
                   style: AppTextStyle.r18.copyWith(color: AppColors.cGray500),
                 ),
                 items: _buildDropDownItems(),
-                onChanged: context.read<UserBloc>().changeGenderSelect,
+                onChanged: context.read<UserEditBloc>().changeGenderSelect,
                 buttonStyleData: const ButtonStyleData(
                   padding: EdgeInsets.zero,
                   height: 48,

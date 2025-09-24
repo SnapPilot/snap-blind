@@ -37,7 +37,7 @@ import 'package:snap_blind/domain/user/repository/user_repository.dart'
     as _i656;
 import 'package:snap_blind/presenter/auth/auth_bloc.dart' as _i605;
 import 'package:snap_blind/presenter/home/bloc/home_bloc.dart' as _i651;
-import 'package:snap_blind/presenter/user/user_bloc.dart' as _i496;
+import 'package:snap_blind/presenter/user/user_edit_bloc.dart' as _i496;
 import 'package:supabase_flutter/supabase_flutter.dart' as _i454;
 
 const String _dev = 'dev';
@@ -83,8 +83,8 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i1068.ProdLogger(),
       registerFor: {_prod},
     );
-    gh.factory<_i496.UserBloc>(
-      () => _i496.UserBloc(gh<_i656.UserRepository>()),
+    gh.factory<_i496.UserEditBloc>(
+      () => _i496.UserEditBloc(gh<_i656.UserRepository>()),
     );
     gh.lazySingleton<_i994.AuthRepository>(
       () => _i505.KaKaoAuthRepository(remote: gh<_i41.KaKaoAuthDataSource>()),

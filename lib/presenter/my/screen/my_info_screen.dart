@@ -13,9 +13,9 @@ import 'package:snap_blind/presenter/const/asset_const.dart';
 import 'package:snap_blind/presenter/const/string_const.dart';
 import 'package:snap_blind/presenter/theme/app_colors.dart';
 import 'package:snap_blind/presenter/theme/app_text_style.dart';
-import 'package:snap_blind/presenter/user/user_bloc.dart';
-import 'package:snap_blind/presenter/user/user_event.dart';
-import 'package:snap_blind/presenter/user/user_state.dart';
+import 'package:snap_blind/presenter/user/user_edit_bloc.dart';
+import 'package:snap_blind/presenter/user/user_edit_event.dart';
+import 'package:snap_blind/presenter/user/user_edit_state.dart';
 import 'package:snap_blind/presenter/widget/app_divider.dart';
 import 'package:snap_blind/presenter/widget/labeled_text_form_field.dart';
 

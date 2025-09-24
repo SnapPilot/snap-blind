@@ -11,12 +11,12 @@ import 'package:snap_blind/domain/user/repository/user_repository.dart';
 import 'package:snap_blind/presenter/base/base_bloc.dart';
 import 'package:snap_blind/presenter/base/base_state.dart';
 import 'package:snap_blind/presenter/const/string_const.dart';
-import 'package:snap_blind/presenter/user/user_event.dart';
-import 'package:snap_blind/presenter/user/user_state.dart';
+import 'package:snap_blind/presenter/user/user_edit_event.dart';
+import 'package:snap_blind/presenter/user/user_edit_state.dart';
 
 @injectable
-final class UserBloc extends BaseBloc<UserEditEvent, UserEditState> {
-  UserBloc(this._userRepository)
+final class UserEditBloc extends BaseBloc<UserEditEvent, UserEditState> {
+  UserEditBloc(this._userRepository)
     : super(const UserEditState(stateType: BaseStateType.initial)) {
     on<UserUpdateRequested>(_onSubmit);
     on<UserInitializeRequested>(_onInitializeRequest);

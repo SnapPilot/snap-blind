@@ -1,4 +1,4 @@
-import 'package:snap_blind/presenter/user/user_state.dart';
+import 'package:snap_blind/presenter/user/user_edit_state.dart';
 
 final class UserProfileEntity {
   UserProfileEntity({

@@ -1,6 +1,6 @@
 import 'package:snap_blind/core/utils/typedef.dart';
 import 'package:snap_blind/domain/user/entity/user_profile_entity.dart';
-import 'package:snap_blind/presenter/user/user_state.dart';
+import 'package:snap_blind/presenter/user/user_edit_state.dart';
 
 final class UserProfileResDto {
   UserProfileResDto({
