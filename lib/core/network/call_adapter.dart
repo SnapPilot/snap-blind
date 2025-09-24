@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
+import 'package:snap_blind/core/di/di.dart';
 import 'package:snap_blind/core/error/result.dart';
+import 'package:snap_blind/core/logger/app_logger.dart';
 import 'package:snap_blind/data/auth/exception/kakao_exception.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -49,6 +51,11 @@ class SupabaseCallAdapter<T> extends CallAdapter<Future<T>, Future<Result<T>>> {
       final T response = await call();
       return Result.ok(response);
     } on AuthException catch (e) {
+      return Result.error(e);
+    } on PostgrestException catch (e, stack) {
+      getIt<AppLogger>().error(
+        'PostgrestException: ${e.message}, code: ${e.code}\nstack$stack',
+      );
       return Result.error(e);
     } on Exception catch (e, stack) {
       return Result.error(
