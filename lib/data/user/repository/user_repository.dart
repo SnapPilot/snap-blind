@@ -3,6 +3,7 @@ import 'package:snap_blind/core/error/result.dart';
 import 'package:snap_blind/core/extension/result_extension.dart';
 import 'package:snap_blind/core/utils/typedef.dart';
 import 'package:snap_blind/data/user/dto/user_profile_res_dto.dart';
+import 'package:snap_blind/data/user/dto/user_profile_update_req_dto.dart';
 import 'package:snap_blind/data/user/source/supabase_user_data_source.dart';
 import 'package:snap_blind/domain/user/entity/user_profile_entity.dart';
 import 'package:snap_blind/domain/user/repository/user_repository.dart';
@@ -29,6 +30,24 @@ final class UserRepositoryImpl implements UserRepository {
         final UserProfileResDto userResDto = UserProfileResDto.fromJson(
           firstJson,
         );
+
+        return Result.ok(userResDto.toEntity());
+      },
+      exception: (e) {
+        return Result.error(e);
+      },
+    );
+  }
+
+  @override
+  Future<Result<UserProfileEntity>> updateProfile(
+    UserProfileUpdateReqDto dto,
+  ) async {
+    final Result<Json> result = await _source.updateUserProfile(dto);
+
+    return result.when(
+      ok: (Json json) {
+        final UserProfileResDto userResDto = UserProfileResDto.fromJson(json);
 
         return Result.ok(userResDto.toEntity());
       },

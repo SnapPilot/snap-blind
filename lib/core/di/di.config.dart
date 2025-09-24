@@ -26,9 +26,9 @@ import 'package:snap_blind/data/match/repository/match_repository_impl.dart'
     as _i79;
 import 'package:snap_blind/data/match/source/supabase_match_data_source.dart'
     as _i95;
+import 'package:snap_blind/data/user/repository/user_repository.dart' as _i701;
 import 'package:snap_blind/data/user/source/supabase_user_data_source.dart'
     as _i710;
-import 'package:snap_blind/data/user/user_repository.dart' as _i555;
 import 'package:snap_blind/domain/auth/repository/auth_repository.dart'
     as _i994;
 import 'package:snap_blind/domain/match/repository/match_repository.dart'
@@ -54,7 +54,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i921.SupabaseAuthRepository>(
       () => _i921.SupabaseAuthRepository(),
     );
-    gh.factory<_i496.UserBloc>(() => _i496.UserBloc());
     gh.factory<_i95.SupabaseMatchDataSource>(
       () => _i95.SupabaseMatchDataSource(),
     );
@@ -78,11 +77,14 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i656.UserRepository>(
       () =>
-          _i555.UserRepositoryImpl(source: gh<_i710.SupabaseUserDataSource>()),
+          _i701.UserRepositoryImpl(source: gh<_i710.SupabaseUserDataSource>()),
     );
     gh.lazySingleton<_i382.AppLogger>(
       () => _i1068.ProdLogger(),
       registerFor: {_prod},
+    );
+    gh.factory<_i496.UserBloc>(
+      () => _i496.UserBloc(gh<_i656.UserRepository>()),
     );
     gh.lazySingleton<_i994.AuthRepository>(
       () => _i505.KaKaoAuthRepository(remote: gh<_i41.KaKaoAuthDataSource>()),
