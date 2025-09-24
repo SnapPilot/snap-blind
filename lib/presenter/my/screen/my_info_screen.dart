@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:snap_blind/presenter/auth/auth_bloc.dart';
+import 'package:snap_blind/presenter/auth/auth_event.dart';
 import 'package:snap_blind/presenter/auth/auth_state.dart';
 import 'package:snap_blind/presenter/base/base_screen.dart';
 import 'package:snap_blind/presenter/base/base_state.dart';

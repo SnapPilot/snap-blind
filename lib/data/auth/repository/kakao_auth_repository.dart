@@ -28,7 +28,7 @@ final class KaKaoAuthRepository implements AuthRepository {
           kakaoToken,
         );
         final UserEntity userEntity = UserEntity.fromKaKao(
-          socialId: user.id,
+          socialId: user.id.toString(),
           loginType: LoginType.kakao,
           email: user.kakaoAccount?.email ?? '',
           profileImage: user.properties?['profile_image'] ?? '',

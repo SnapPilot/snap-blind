@@ -3,7 +3,7 @@ import 'package:snap_blind/presenter/user/user_state.dart';
 
 final class UserEntity {
   UserEntity({
-    this.socialId,
+    required this.uid,
     required this.loginType,
     required this.email,
     required this.profileImage,
@@ -13,7 +13,7 @@ final class UserEntity {
     required this.gender,
   });
 
-  final int? socialId;
+  final String uid;
   final LoginType loginType;
   final String email;
   final String profileImage;
@@ -23,14 +23,14 @@ final class UserEntity {
   final Gender gender;
 
   factory UserEntity.fromKaKao({
-    required int socialId,
+    required String socialId,
     required LoginType loginType,
     required String email,
     required String profileImage,
     required String nickName,
   }) {
     return UserEntity(
-      socialId: socialId,
+      uid: socialId,
       loginType: loginType,
       email: email,
       profileImage: profileImage,
@@ -42,7 +42,7 @@ final class UserEntity {
   }
 
   UserEntity copyWith({
-    int? socialId,
+    String? uid,
     LoginType? loginType,
     String? email,
     String? profileImage,
@@ -52,7 +52,7 @@ final class UserEntity {
     Gender? gender,
   }) {
     return UserEntity(
-      socialId: socialId ?? this.socialId,
+      uid: uid ?? this.uid,
       loginType: loginType ?? this.loginType,
       email: email ?? this.email,
       profileImage: profileImage ?? this.profileImage,
