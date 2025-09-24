@@ -34,4 +34,5 @@ abstract final class StringConst {
   static const String chatCostInfo = '채팅 1건당 코인 2개';
   static const String buyCoin = '코인 구매하기';
   static const String star = '*';
+  static const String notLoggedInMessage = '로그인 상태가 아닙니다.';
 }
