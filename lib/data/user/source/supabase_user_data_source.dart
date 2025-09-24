@@ -22,7 +22,9 @@ final class SupabaseUserDataSource {
     if (dto.intro != null) params['intro'] = dto.intro;
     if (dto.gender != null) params['gender'] = dto.gender;
     if (dto.photoUrl != null) params['photo_url'] = dto.photoUrl;
-    if (dto.birthDate != null) params['birth_date'] = dto.birthDate;
+    if (dto.birthDate != null) {
+      params['birth_date'] = dto.birthDate!.toIso8601String();
+    }
 
     return SupabaseCallAdapter<Json>().adapt(() async {
       return await _supabase
