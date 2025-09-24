@@ -142,7 +142,7 @@ final class _UserInfoEditBottomSheet
                 ],
               ),
               DropdownButtonFormField2<Gender>(
-                value: state.gender,
+                value: state.userEntity?.gender,
                 isExpanded: true,
                 decoration: const InputDecoration(
                   contentPadding: EdgeInsets.zero,
