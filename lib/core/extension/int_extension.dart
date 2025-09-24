@@ -1,5 +1,5 @@
 extension IntX on int {
   DateTime ageToDateTime() {
-    return DateTime(DateTime.now().year - 1);
+    return DateTime(DateTime.now().year - this + 1);
   }
 }

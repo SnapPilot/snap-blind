@@ -32,20 +32,24 @@ final class UserEditState extends BaseState {
   const UserEditState({
     super.stateType = BaseStateType.success,
     super.errorMessage,
+    this.selectedGender = Gender.male,
     this.userEntity,
   });
 
   final UserEntity? userEntity;
+  final Gender selectedGender;
 
   UserEditState copyWith({
     BaseStateType? stateType,
     String? errorMessage,
     UserEntity? userEntity,
+    Gender? selectedGender,
   }) {
     return UserEditState(
       stateType: stateType ?? this.stateType,
       errorMessage: errorMessage ?? this.errorMessage,
       userEntity: userEntity ?? this.userEntity,
+      selectedGender: selectedGender ?? this.selectedGender,
     );
   }
 
@@ -53,6 +57,9 @@ final class UserEditState extends BaseState {
   List<Object?> get props => [...super.props, userEntity];
 }
 
-final class UserEditSuccess extends UserEditState {
-  const UserEditSuccess();
+final class UserEditSuccessState extends UserEditState {
+  const UserEditSuccessState({super.userEntity});
+
+  @override
+  List<Object?> get props => [...super.props];
 }

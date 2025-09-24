@@ -36,6 +36,10 @@ final class _UserInfoEditBottomSheet
       );
       return;
     }
+
+    if (state is UserEditSuccessState) {
+      context.read<AuthBloc>().add(UserUpdateRequestEvent(state.userEntity!));
+    }
   }
 
   Future<void> showEditProfileBottomSheet(BuildContext context) {
@@ -96,7 +100,11 @@ final class _UserInfoEditBottomSheet
               const Spacer(),
               GestureDetector(
                 onTap: () {
-                  userEditBloc.add(const UserUpdateRequested());
+                  userEditBloc.add(
+                    UserUpdateRequested(
+                      uid: context.read<AuthBloc>().state.userEntity!.uid,
+                    ),
+                  );
                 },
                 child: Text(
                   StringConst.save,
@@ -159,7 +167,7 @@ final class _UserInfoEditBottomSheet
                   style: AppTextStyle.r18.copyWith(color: AppColors.cGray500),
                 ),
                 items: _buildDropDownItems(),
-                onChanged: (g) {},
+                onChanged: context.read<UserBloc>().changeGenderSelect,
                 buttonStyleData: const ButtonStyleData(
                   padding: EdgeInsets.zero,
                   height: 48,

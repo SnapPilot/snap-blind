@@ -17,6 +17,7 @@ import 'package:snap_blind/presenter/auth/auth_event.dart';
 import 'package:snap_blind/presenter/auth/auth_state.dart';
 import 'package:snap_blind/presenter/base/base_bloc.dart';
 import 'package:snap_blind/presenter/base/base_state.dart';
+import 'package:snap_blind/presenter/const/string_const.dart';
 import 'package:snap_blind/presenter/user/user_state.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
@@ -30,6 +31,7 @@ final class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
     on<KaKaoLoginRequestEvent>(_onKaKaoLogin);
     on<LoginRequestEvent>(_onLogin);
     on<AdminLoginRequestEvent>(_onAdminLogin);
+    on<UserUpdateRequestEvent>(_onUserProfileUpdate);
   }
 
   final AuthRepository _oAuthRepository;
@@ -87,6 +89,7 @@ final class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
         emit(
           LoginSuccessState(
             event.userEntity.copyWith(
+              uid: userProfileEntity!.userUid,
               email: supabaseResponse.user?.email,
               profileImage: userProfileEntity!.photoUrl,
               nickName: userProfileEntity!.nickname,
@@ -124,7 +127,7 @@ final class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
           LoginSuccessState(
             UserEntity(
               email: supabaseResponse.user?.email ?? '',
-              socialId: null,
+              uid: '',
               loginType: LoginType.email,
               profileImage: '',
               nickName: '',
@@ -142,6 +145,22 @@ final class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
         getIt<AppLogger>().error(error.toString());
       },
     );
+  }
+
+  void _onUserProfileUpdate(
+    UserUpdateRequestEvent event,
+    Emitter<AuthState> emit,
+  ) {
+    if (state.userEntity == null) {
+      emit(
+        const AuthState(
+          stateType: BaseStateType.failure,
+          errorMessage: StringConst.notLoggedInMessage,
+        ),
+      );
+    }
+
+    emit(state.copyWith(userEntity: event.userEntity));
   }
 
   @override

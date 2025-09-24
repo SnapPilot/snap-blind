@@ -29,7 +29,7 @@ final class LogoutRequestEvent extends AuthEvent {}
 final class KaKaoLoginRequestEvent extends AuthEvent {}
 
 @immutable
-class AdminLoginRequestEvent extends AuthEvent {
+final class AdminLoginRequestEvent extends AuthEvent {
   const AdminLoginRequestEvent({required this.email, required this.password});
 
   final String email;
@@ -37,4 +37,11 @@ class AdminLoginRequestEvent extends AuthEvent {
 
   @override
   List<Object?> get props => [email, password];
+}
+
+@immutable
+final class UserUpdateRequestEvent extends AuthEvent {
+  const UserUpdateRequestEvent(this.userEntity);
+
+  final UserEntity userEntity;
 }
