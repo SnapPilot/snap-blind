@@ -53,8 +53,6 @@ final class UserEditBloc extends BaseBloc<UserEditEvent, UserEditState> {
     UserUpdateRequested event,
     Emitter<UserEditState> emit,
   ) async {
-    emit(state.copyWith(stateType: BaseStateType.inProgress));
-
     Result<UserProfileEntity> result = await _userRepository.updateProfile(
       UserProfileUpdateReqDto(
         uid: event.uid,
@@ -96,6 +94,13 @@ final class UserEditBloc extends BaseBloc<UserEditEvent, UserEditState> {
     if (gender == null) return;
 
     _selectedGender = gender;
+  }
+
+  bool isUserInputValidation() {
+    return state.userEntity != null &&
+        (ageController.text != (state.userEntity!.age.toString() ?? '') ||
+            nameController.text != state.userEntity!.nickName ||
+            introController.text != state.userEntity!.intro);
   }
 
   @override
