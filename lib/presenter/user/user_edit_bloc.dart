@@ -21,6 +21,11 @@ final class UserEditBloc extends BaseBloc<UserEditEvent, UserEditState> {
     on<UserUpdateRequested>(_onSubmit);
     on<UserInitializeRequested>(_onInitializeRequest);
     on<UserInitialized>(_onInitialize);
+    on<UserFieldsChanged>(_onFieldsChanged);
+
+    nameController.addListener(_onControllerChanged);
+    ageController.addListener(_onControllerChanged);
+    introController.addListener(_onControllerChanged);
   }
 
   final UserRepository _userRepository;
@@ -94,13 +99,61 @@ final class UserEditBloc extends BaseBloc<UserEditEvent, UserEditState> {
     if (gender == null) return;
 
     _selectedGender = gender;
+
+    add(const UserFieldsChanged());
+    return;
   }
 
-  bool isUserInputValidation() {
-    return state.userEntity != null &&
-        (ageController.text != (state.userEntity!.age.toString() ?? '') ||
-            nameController.text != state.userEntity!.nickName ||
-            introController.text != state.userEntity!.intro);
+  bool get _isUserInputValidation {
+    final int? age = int.tryParse(ageController.text);
+    final int nameLength = nameController.text.length;
+    final int introLength = introController.text.length;
+
+    if (introLength < 1 || introLength > 100) {
+      return false;
+    }
+
+    if (age == null || age < 1 || age > 100) {
+      return false;
+    }
+
+    if (nameLength < 2 || nameLength > 12) {
+      return false;
+    }
+
+    return true;
+  }
+
+  void _onControllerChanged() {
+    add(const UserFieldsChanged());
+  }
+
+  void _onFieldsChanged(UserFieldsChanged event, Emitter<UserEditState> emit) {
+    if (state.userEntity == null) {
+      return;
+    }
+
+    final UserEntity userEntity = state.userEntity!;
+
+    if (ageController.text == userEntity.age.toString() &&
+        nameController.text == userEntity.nickName &&
+        introController.text == userEntity.intro &&
+        selectedGender == userEntity.gender) {
+      emit(
+        UserEditState(
+          userEntity: state.userEntity,
+          stateType: BaseStateType.success,
+        ),
+      );
+      return;
+    }
+
+    if (_isUserInputValidation) {
+      emit(UserEditChangedState(userEntity: state.userEntity));
+      return;
+    }
+
+    emit(UserEditValidationFailedState(userEntity: state.userEntity));
   }
 
   @override

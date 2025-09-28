@@ -100,6 +100,9 @@ final class _UserInfoEditBottomSheet
               const Spacer(),
               GestureDetector(
                 onTap: () {
+                  if (userEditBloc.state is! UserEditChangedState) {
+                    return;
+                  }
                   userEditBloc.add(
                     UserUpdateRequested(
                       uid: context.read<AuthBloc>().state.userEntity!.uid,
@@ -108,7 +111,12 @@ final class _UserInfoEditBottomSheet
                 },
                 child: Text(
                   StringConst.save,
-                  style: AppTextStyle.b16.copyWith(color: AppColors.cGray500),
+                  style: AppTextStyle.b16.copyWith(
+                    color:
+                        userEditBloc.state is UserEditChangedState
+                            ? AppColors.primary
+                            : AppColors.cGray500,
+                  ),
                 ),
               ),
             ],

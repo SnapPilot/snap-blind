@@ -31,3 +31,7 @@ final class UserInitialized extends UserEditEvent {
   @override
   List<Object?> get props => [entity];
 }
+
+final class UserFieldsChanged extends UserEditEvent {
+  const UserFieldsChanged();
+}
