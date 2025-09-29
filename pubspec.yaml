@@ -41,6 +41,7 @@ dependencies:
   flutter_svg: ^2.2.0
   kakao_flutter_sdk_user: ^1.9.5
   dropdown_button2: ^2.3.9
+  image_picker: ^1.2.0
 
 dev_dependencies:
   flutter_test:
