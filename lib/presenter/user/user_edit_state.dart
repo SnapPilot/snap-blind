@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:snap_blind/domain/auth/entity/user_entity.dart';
 import 'package:snap_blind/presenter/base/base_state.dart';
 import 'package:snap_blind/presenter/const/string_const.dart';
@@ -33,24 +34,28 @@ final class UserEditState extends BaseState {
     super.stateType = BaseStateType.success,
     super.errorMessage,
     this.userEntity,
+    this.profileImage,
   });
 
   final UserEntity? userEntity;
+  final XFile? profileImage;
 
   UserEditState copyWith({
     BaseStateType? stateType,
     String? errorMessage,
     UserEntity? userEntity,
+    XFile? profileImage,
   }) {
     return UserEditState(
       stateType: stateType ?? this.stateType,
       errorMessage: errorMessage ?? this.errorMessage,
       userEntity: userEntity ?? this.userEntity,
+      profileImage: profileImage ?? this.profileImage,
     );
   }
 
   @override
-  List<Object?> get props => [...super.props, userEntity];
+  List<Object?> get props => [...super.props, userEntity, profileImage];
 }
 
 @immutable
@@ -60,10 +65,15 @@ final class UserEditSuccessState extends UserEditState {
 
 @immutable
 final class UserEditChangedState extends UserEditState {
-  const UserEditChangedState({super.userEntity});
+  const UserEditChangedState({super.userEntity, super.profileImage});
 }
 
 @immutable
 final class UserEditValidationFailedState extends UserEditState {
   const UserEditValidationFailedState({super.userEntity});
+}
+
+@immutable
+final class UserProfileImagePickFailedState extends UserEditState {
+  const UserProfileImagePickFailedState({super.userEntity});
 }

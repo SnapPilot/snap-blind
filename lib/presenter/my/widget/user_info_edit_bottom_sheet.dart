@@ -39,6 +39,16 @@ final class _UserInfoEditBottomSheet
 
     if (state is UserEditSuccessState) {
       context.read<AuthBloc>().add(UserUpdateRequestEvent(state.userEntity!));
+      return;
+    }
+
+    if (state.stateType is UserProfileImagePickFailedState) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(StringConst.userProfileImagePickedErrorMessage),
+        ),
+      );
+      return;
     }
   }
 

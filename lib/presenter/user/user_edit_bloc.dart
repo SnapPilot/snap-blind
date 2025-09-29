@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:snap_blind/core/error/result.dart';
 import 'package:snap_blind/core/extension/int_extension.dart';
@@ -22,6 +23,8 @@ final class UserEditBloc extends BaseBloc<UserEditEvent, UserEditState> {
     on<UserInitializeRequested>(_onInitializeRequest);
     on<UserInitialized>(_onInitialize);
     on<UserFieldsChanged>(_onFieldsChanged);
+    on<UserProfileImageClicked>(_onUserProfileImageClicked);
+    on<UserProfileImagePicked>(_onUserProfileImagePicked);
 
     nameController.addListener(_onControllerChanged);
     ageController.addListener(_onControllerChanged);
@@ -142,6 +145,7 @@ final class UserEditBloc extends BaseBloc<UserEditEvent, UserEditState> {
       emit(
         UserEditState(
           userEntity: state.userEntity,
+          profileImage: state.profileImage,
           stateType: BaseStateType.success,
         ),
       );
@@ -149,11 +153,51 @@ final class UserEditBloc extends BaseBloc<UserEditEvent, UserEditState> {
     }
 
     if (_isUserInputValidation) {
-      emit(UserEditChangedState(userEntity: state.userEntity));
+      emit(
+        UserEditChangedState(
+          userEntity: state.userEntity,
+          profileImage: state.profileImage,
+        ),
+      );
       return;
     }
 
     emit(UserEditValidationFailedState(userEntity: state.userEntity));
+  }
+
+  void _onUserProfileImageClicked(
+    UserProfileImageClicked event,
+    Emitter<UserEditState> emit,
+  ) async {
+    /// app TODO: 이미지 다운 샘플링
+    try {
+      final ImagePicker picker = ImagePicker();
+      final XFile? picked = await picker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 85,
+      );
+
+      if (picked == null) {
+        emit(UserProfileImagePickFailedState(userEntity: state.userEntity));
+        return;
+      }
+
+      add(UserProfileImagePicked(picked));
+    } catch (e, _) {
+      emit(UserProfileImagePickFailedState(userEntity: state.userEntity));
+    }
+  }
+
+  void _onUserProfileImagePicked(
+    UserProfileImagePicked event,
+    Emitter<UserEditState> emit,
+  ) {
+    emit(
+      UserEditChangedState(
+        userEntity: state.userEntity,
+        profileImage: event.profileImage,
+      ),
+    );
   }
 
   @override
