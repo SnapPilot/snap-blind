@@ -11,7 +11,7 @@ final class _MenuItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 21),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 17),
         child: Row(
           children: [
             Text(
@@ -20,7 +20,7 @@ final class _MenuItem extends StatelessWidget {
             ),
             const Spacer(),
             const Icon(
-              Icons.arrow_forward_ios_outlined,
+              Icons.chevron_right,
               size: 28,
               color: AppColors.cGray400,
             ),
