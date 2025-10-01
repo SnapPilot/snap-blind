@@ -57,10 +57,35 @@ final class UserEditBloc extends BaseBloc<UserEditEvent, UserEditState> {
     emit(UserEditState(userEntity: userEntity));
   }
 
-  Future<void> _onSubmit(
-    UserUpdateRequested event,
-    Emitter<UserEditState> emit,
-  ) async {
+  void _onSubmit(UserUpdateRequested event, Emitter<UserEditState> emit) async {
+    String uploadImagePath = '';
+
+    if (event.imageFile != null) {
+      Result<String> result = await _userRepository.uploadProfileImage(
+        event.imageFile!,
+      );
+
+      result.when(
+        ok: (String imagePath) {
+          uploadImagePath = imagePath;
+        },
+        exception: (e) {
+          emit(
+            UserEditState(
+              profileImage: state.profileImage,
+              userEntity: state.userEntity,
+              stateType: BaseStateType.failure,
+              errorMessage: StringConst.uploadImageErrorMessage,
+            ),
+          );
+        },
+      );
+
+      if (result is Error) {
+        return;
+      }
+    }
+
     Result<UserProfileEntity> result = await _userRepository.updateProfile(
       UserProfileUpdateReqDto(
         uid: event.uid,
@@ -68,17 +93,9 @@ final class UserEditBloc extends BaseBloc<UserEditEvent, UserEditState> {
         nickName: nameController.text,
         gender: selectedGender.name,
         birthDate: int.tryParse(ageController.text)?.ageToDateTime(),
+        photoUrl: uploadImagePath,
       ),
     );
-
-    if (state.userEntity == null) {
-      emit(
-        const UserEditState(
-          stateType: BaseStateType.failure,
-          errorMessage: StringConst.notLoggedInMessage,
-        ),
-      );
-    }
 
     result.when(
       ok: (UserProfileEntity userProfileEntity) {
@@ -94,7 +111,16 @@ final class UserEditBloc extends BaseBloc<UserEditEvent, UserEditState> {
           ),
         );
       },
-      exception: (e) {},
+      exception: (e) {
+        emit(
+          UserEditState(
+            profileImage: state.profileImage,
+            userEntity: state.userEntity,
+            stateType: BaseStateType.failure,
+            errorMessage: StringConst.updateProfileErrorMessage,
+          ),
+        );
+      },
     );
   }
 

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:injectable/injectable.dart';
 import 'package:snap_blind/core/error/result.dart';
 import 'package:snap_blind/core/network/call_adapter.dart';
@@ -18,10 +20,14 @@ final class SupabaseUserDataSource {
   Future<Result<Json>> updateUserProfile(UserProfileUpdateReqDto dto) async {
     final Map<String, dynamic> params = {};
 
+    final String publicUrl = _supabase.storage
+        .from('profile-images')
+        .getPublicUrl('${dto.uid}/profile.jpg');
+
     if (dto.nickName != null) params['nickname'] = dto.nickName;
     if (dto.intro != null) params['intro'] = dto.intro;
     if (dto.gender != null) params['gender'] = dto.gender;
-    if (dto.photoUrl != null) params['photo_url'] = dto.photoUrl;
+    if (dto.photoUrl != null) params['photo_url'] = publicUrl;
     if (dto.birthDate != null) {
       params['birth_date'] = dto.birthDate!.toIso8601String();
     }
@@ -33,6 +39,24 @@ final class SupabaseUserDataSource {
           .eq('user_id', dto.uid)
           .select()
           .single();
+    });
+  }
+
+  Future<Result<String>> uploadUserProfileImage(String path) async {
+    final String? uid = _supabase.auth.currentUser?.id;
+
+    return SupabaseCallAdapter<String>().adapt(() async {
+      return await _supabase.storage
+          .from('profile-images')
+          .upload(
+            '$uid/profile.jpg',
+            File(path),
+            fileOptions: const FileOptions(
+              cacheControl: '3600',
+              upsert: true,
+              contentType: 'image/jpeg',
+            ),
+          );
     });
   }
 }

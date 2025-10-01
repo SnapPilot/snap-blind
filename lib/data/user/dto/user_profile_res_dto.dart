@@ -36,7 +36,7 @@ final class UserProfileResDto {
       nickname: nickname,
       intro: intro,
       gender: gender,
-      photoUrl: photoUrl,
+      photoUrl: '$photoUrl?t=${DateTime.now().millisecondsSinceEpoch}',
       birthDate: birthDate,
     );
   }

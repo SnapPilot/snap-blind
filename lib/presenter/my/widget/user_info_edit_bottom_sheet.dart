@@ -116,6 +116,7 @@ final class _UserInfoEditBottomSheet
                   userEditBloc.add(
                     UserUpdateRequested(
                       uid: context.read<AuthBloc>().state.userEntity!.uid,
+                      imageFile: userEditBloc.state.profileImage,
                     ),
                   );
                 },

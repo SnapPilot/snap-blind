@@ -1,3 +1,4 @@
+import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:snap_blind/core/error/result.dart';
 import 'package:snap_blind/core/extension/result_extension.dart';
@@ -55,5 +56,10 @@ final class UserRepositoryImpl implements UserRepository {
         return Result.error(e);
       },
     );
+  }
+
+  @override
+  Future<Result<String>> uploadProfileImage(XFile imageFile) async {
+    return await _source.uploadUserProfileImage(imageFile.path);
   }
 }

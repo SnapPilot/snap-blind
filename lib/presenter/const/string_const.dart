@@ -37,4 +37,6 @@ abstract final class StringConst {
   static const String buyCoin = '코인 구매하기';
   static const String star = '*';
   static const String notLoggedInMessage = '로그인 상태가 아닙니다.';
+  static const String uploadImageErrorMessage = '사진 업로드에 실패했습니다.';
+  static const String updateProfileErrorMessage = '프로필 업데이트에 실패했습니다.';
 }

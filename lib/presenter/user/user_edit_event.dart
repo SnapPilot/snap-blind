@@ -13,9 +13,10 @@ sealed class UserEditEvent extends Equatable {
 
 @immutable
 final class UserUpdateRequested extends UserEditEvent {
-  const UserUpdateRequested({required this.uid});
+  const UserUpdateRequested({required this.uid, this.imageFile});
 
   final String uid;
+  final XFile? imageFile;
 }
 
 @immutable
