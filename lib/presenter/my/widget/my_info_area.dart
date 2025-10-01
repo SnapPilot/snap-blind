@@ -14,6 +14,7 @@ final class _MyInfoArea extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(999),
                 child: Image.network(
+                  fit: BoxFit.cover,
                   state.userEntity?.profileImage ?? '',
                   width: 56,
                   height: 56,
