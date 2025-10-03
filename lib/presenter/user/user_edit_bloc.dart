@@ -133,7 +133,7 @@ final class UserEditBloc extends BaseBloc<UserEditEvent, UserEditState> {
     return;
   }
 
-  bool get _isUserInputValidation {
+  bool get _userInputValidation {
     final int? age = int.tryParse(ageController.text);
     final int nameLength = nameController.text.length;
     final int introLength = introController.text.length;
@@ -178,7 +178,7 @@ final class UserEditBloc extends BaseBloc<UserEditEvent, UserEditState> {
       return;
     }
 
-    if (_isUserInputValidation) {
+    if (_userInputValidation) {
       emit(
         UserEditChangedState(
           userEntity: state.userEntity,
