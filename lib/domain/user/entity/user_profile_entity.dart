@@ -7,6 +7,9 @@ final class UserProfileEntity {
     required this.intro,
     required this.gender,
     required this.photoUrl,
+    required this.agreeTermsOfService,
+    required this.agreeAgeOver14,
+    required this.agreePrivacyPolicy,
     this.birthDate,
   });
 
@@ -16,6 +19,9 @@ final class UserProfileEntity {
   final Gender gender;
   final String photoUrl;
   final DateTime? birthDate;
+  final bool agreeTermsOfService;
+  final bool agreePrivacyPolicy;
+  final bool agreeAgeOver14;
 
   int get age {
     if (birthDate == null) return 0;

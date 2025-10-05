@@ -6,7 +6,8 @@ import 'package:snap_blind/presenter/const/string_const.dart';
 
 enum Gender {
   male,
-  female;
+  female,
+  other;
 
   @override
   String toString() {
@@ -15,6 +16,8 @@ enum Gender {
         return StringConst.male;
       case female:
         return StringConst.female;
+      default:
+        return other.name;
     }
   }
 
@@ -22,8 +25,10 @@ enum Gender {
     switch (code) {
       case 'male':
         return Gender.male;
-      default:
+      case 'female':
         return Gender.female;
+      default:
+        return Gender.other;
     }
   }
 }

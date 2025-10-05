@@ -86,22 +86,32 @@ final class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
 
     supabaseAuthResponse.when(
       ok: (supabaseResponse) {
-        emit(
-          LoginSuccessState(
-            event.userEntity.copyWith(
-              uid: userProfileEntity!.userUid,
-              email: supabaseResponse.user?.email,
-              profileImage: userProfileEntity!.photoUrl,
-              nickName: userProfileEntity!.nickname,
-              intro: userProfileEntity!.intro,
-              age: userProfileEntity!.age,
-              gender: userProfileEntity!.gender,
-            ),
-            event.authTokenEntity.copyWith(
-              accessToken: supabaseResponse.session?.accessToken,
-            ),
-          ),
+        final UserEntity userEntity = event.userEntity.copyWith(
+          uid: userProfileEntity!.userUid,
+          email: supabaseResponse.user?.email,
+          profileImage: userProfileEntity!.photoUrl,
+          nickName: userProfileEntity!.nickname,
+          intro: userProfileEntity!.intro,
+          age: userProfileEntity!.age,
+          gender: userProfileEntity!.gender,
         );
+        final AuthTokenEntity authTokenEntity = event.authTokenEntity.copyWith(
+          accessToken: supabaseResponse.session?.accessToken,
+        );
+
+        if (!userProfileEntity!.agreeTermsOfService ||
+            !userProfileEntity!.agreeAgeOver14 ||
+            !userProfileEntity!.agreePrivacyPolicy) {
+          emit(AgreementRequiredState(userEntity, authTokenEntity));
+          return;
+        }
+
+        if (userEntity.gender == Gender.other) {
+          emit(ProfileInfoRequiredState(userEntity, authTokenEntity));
+          return;
+        }
+
+        emit(LoginSuccessState(userEntity, authTokenEntity));
       },
       exception: (error) {
         getIt<AppLogger>().error(error.toString());

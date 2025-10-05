@@ -58,6 +58,30 @@ final class LoginSuccessState extends AuthState {
 }
 
 @immutable
+final class AgreementRequiredState extends AuthState {
+  const AgreementRequiredState(
+    UserEntity userEntity,
+    AuthTokenEntity authTokenEntity,
+  ) : super(
+        stateType: BaseStateType.success,
+        userEntity: userEntity,
+        authTokenEntity: authTokenEntity,
+      );
+}
+
+@immutable
+final class ProfileInfoRequiredState extends AuthState {
+  const ProfileInfoRequiredState(
+    UserEntity userEntity,
+    AuthTokenEntity authTokenEntity,
+  ) : super(
+        stateType: BaseStateType.success,
+        userEntity: userEntity,
+        authTokenEntity: authTokenEntity,
+      );
+}
+
+@immutable
 final class KaKaoLoginFailureState extends AuthState {
   const KaKaoLoginFailureState({this.message = ""});
 

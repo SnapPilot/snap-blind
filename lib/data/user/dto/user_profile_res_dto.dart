@@ -9,6 +9,9 @@ final class UserProfileResDto {
     required this.intro,
     required this.gender,
     required this.photoUrl,
+    required this.agreeTermsOfService,
+    required this.agreePrivacyPolicy,
+    required this.agreeAgeOver14,
     this.birthDate,
   });
 
@@ -18,6 +21,9 @@ final class UserProfileResDto {
   final Gender gender;
   final String photoUrl;
   final DateTime? birthDate;
+  final bool agreeTermsOfService;
+  final bool agreePrivacyPolicy;
+  final bool agreeAgeOver14;
 
   factory UserProfileResDto.fromJson(Json json) {
     return UserProfileResDto(
@@ -30,6 +36,9 @@ final class UserProfileResDto {
           json['birth_date'] != null
               ? DateTime.parse(json['birth_date'])
               : null,
+      agreeTermsOfService: json['agree_terms_of_service'],
+      agreePrivacyPolicy: json['agree_privacy_policy'],
+      agreeAgeOver14: json['agree_age_over_14'],
     );
   }
 
@@ -41,6 +50,9 @@ final class UserProfileResDto {
       gender: gender,
       photoUrl: '$photoUrl?t=${DateTime.now().millisecondsSinceEpoch}',
       birthDate: birthDate,
+      agreeAgeOver14: agreeAgeOver14,
+      agreePrivacyPolicy: agreePrivacyPolicy,
+      agreeTermsOfService: agreeTermsOfService,
     );
   }
 }
