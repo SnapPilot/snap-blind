@@ -39,4 +39,9 @@ abstract final class StringConst {
   static const String notLoggedInMessage = '로그인 상태가 아닙니다.';
   static const String uploadImageErrorMessage = '사진 업로드에 실패했습니다.';
   static const String updateProfileErrorMessage = '프로필 업데이트에 실패했습니다.';
+  static const String agreeAll = '약관에 모두 동의';
+  static const String termsOfService = '서비스 이용 약관 (필수)';
+  static const String privacyPolicy = '개인정보 수집 및 이용 (필수)';
+  static const String ageOver14 = '만 14세 이상입니다 (필수)';
+  static const String startButton = '시작하기';
 }

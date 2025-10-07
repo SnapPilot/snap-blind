@@ -1,43 +1,59 @@
 part of '../login_screen.dart';
 
-final class _AgreementBottomSheet extends BaseScreen<AuthBloc, AuthState> {
+final class _AgreementBottomSheet extends StatefulWidget {
   const _AgreementBottomSheet();
 
-  @override
-  Color? get screenBackgroundColor => Colors.transparent;
-
-  @override
-  Color? get unSafeAreaColor => Colors.transparent;
-
-  @override
-  bool get showErrorPage => false;
-
   Future<void> show(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-
     return showModalBottomSheet(
       context: context,
-      useRootNavigator: true,
       isScrollControlled: true,
       backgroundColor: AppColors.white,
-      constraints: BoxConstraints(maxHeight: size.height * 0.6),
+      useSafeArea: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(16),
           topRight: Radius.circular(16),
         ),
       ),
-      builder: (ctx) {
+      builder: (context) {
         return this;
       },
     );
   }
 
   @override
-  Widget buildScreen(BuildContext context, AuthState state) {
+  State<_AgreementBottomSheet> createState() => _AgreementBottomSheetState();
+}
+
+final class _AgreementBottomSheetState extends State<_AgreementBottomSheet> {
+  bool _agreeAll = false;
+  bool _agreeTerms = false;
+  bool _agreePrivacy = false;
+  bool _agreeAge14 = false;
+
+  void _syncAllFromItems() {
+    setState(() {
+      _agreeAll = _agreeTerms && _agreePrivacy && _agreeAge14;
+    });
+  }
+
+  void _setAll(bool value) {
+    setState(() {
+      _agreeAll = value;
+      _agreeTerms = value;
+      _agreePrivacy = value;
+      _agreeAge14 = value;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final double bottomPadding = MediaQuery.of(context).padding.bottom;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           const SizedBox(height: 8),
           Container(
@@ -57,12 +73,47 @@ final class _AgreementBottomSheet extends BaseScreen<AuthBloc, AuthState> {
               borderRadius: BorderRadius.circular(4),
             ),
             child: RadioButton(
-              initialValue: false,
-              onChanged: (value) {},
-              label: '약관에 모두 동의',
+              value: _agreeAll,
+              initialValue: _agreeAll,
+              onChanged: (value) => _setAll(value),
+              label: StringConst.agreeAll,
             ),
           ),
           const SizedBox(height: 14),
+          CheckListTile(
+            label: StringConst.termsOfService,
+            value: _agreeTerms,
+            onChanged: (value) {
+              _agreeTerms = value;
+              _syncAllFromItems();
+            },
+            onTap: () {},
+          ),
+          CheckListTile(
+            label: StringConst.privacyPolicy,
+            value: _agreePrivacy,
+            onChanged: (value) {
+              _agreePrivacy = value;
+              _syncAllFromItems();
+            },
+          ),
+          CheckListTile(
+            label: StringConst.ageOver14,
+            value: _agreeAge14,
+            showTrailing: false,
+            onChanged: (value) {
+              _agreeAge14 = value;
+              _syncAllFromItems();
+            },
+          ),
+          const SizedBox(height: 8),
+          AppButton(
+            buttonText: StringConst.startButton,
+            backgroundColor: AppColors.primary.withValues(
+              alpha: _agreeAll ? 1 : 0.5,
+            ),
+          ),
+          SizedBox(height: bottomPadding),
         ],
       ),
     );
