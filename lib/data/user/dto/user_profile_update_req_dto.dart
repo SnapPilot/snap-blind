@@ -6,6 +6,9 @@ final class UserProfileUpdateReqDto {
     this.gender,
     this.photoUrl,
     this.birthDate,
+    this.agreeTermsOfService,
+    this.agreePrivacyPolicy,
+    this.agreeAgeOver14,
   });
 
   final String uid;
@@ -14,4 +17,7 @@ final class UserProfileUpdateReqDto {
   final String? gender;
   final String? photoUrl;
   final DateTime? birthDate;
+  final bool? agreeTermsOfService;
+  final bool? agreePrivacyPolicy;
+  final bool? agreeAgeOver14;
 }

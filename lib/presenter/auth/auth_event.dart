@@ -45,3 +45,8 @@ final class UserUpdateRequestEvent extends AuthEvent {
 
   final UserEntity userEntity;
 }
+
+@immutable
+final class UpdateAllAgreementEvent extends AuthEvent {
+  const UpdateAllAgreementEvent();
+}

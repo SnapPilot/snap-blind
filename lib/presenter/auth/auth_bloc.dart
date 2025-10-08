@@ -8,6 +8,7 @@ import 'package:snap_blind/core/extension/result_extension.dart';
 import 'package:snap_blind/core/logger/app_logger.dart';
 import 'package:snap_blind/data/auth/dto/oauth_api_dto.dart';
 import 'package:snap_blind/data/auth/repository/supabase_auth_repository.dart';
+import 'package:snap_blind/data/user/dto/user_profile_update_req_dto.dart';
 import 'package:snap_blind/domain/auth/entity/auth_token_entity.dart';
 import 'package:snap_blind/domain/auth/entity/user_entity.dart';
 import 'package:snap_blind/domain/auth/repository/auth_repository.dart';
@@ -32,6 +33,7 @@ final class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
     on<LoginRequestEvent>(_onLogin);
     on<AdminLoginRequestEvent>(_onAdminLogin);
     on<UserUpdateRequestEvent>(_onUserProfileUpdate);
+    on<UpdateAllAgreementEvent>(_onUpdateAgreement);
   }
 
   final AuthRepository _oAuthRepository;
@@ -171,6 +173,22 @@ final class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
     }
 
     emit(state.copyWith(userEntity: event.userEntity));
+  }
+
+  void _onUpdateAgreement(
+    UpdateAllAgreementEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    final result = await _userRepository.updateProfile(
+      UserProfileUpdateReqDto(
+        uid: state.userEntity!.uid,
+        agreeTermsOfService: true,
+        agreePrivacyPolicy: true,
+        agreeAgeOver14: true,
+      ),
+    );
+
+    result.when(ok: (user) {}, exception: (error) {});
   }
 
   @override

@@ -31,6 +31,15 @@ final class SupabaseUserDataSource {
     if (dto.birthDate != null) {
       params['birth_date'] = dto.birthDate!.toIso8601String();
     }
+    if (dto.agreeAgeOver14 != null) {
+      params['agree_age_over_14'] = dto.agreeAgeOver14;
+    }
+    if (dto.agreePrivacyPolicy != null) {
+      params['agree_privacy_policy'] = dto.agreePrivacyPolicy;
+    }
+    if (dto.agreeTermsOfService != null) {
+      params['agree_terms_of_service'] = dto.agreeTermsOfService;
+    }
 
     return SupabaseCallAdapter<Json>().adapt(() async {
       return await _supabase

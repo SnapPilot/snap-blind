@@ -125,6 +125,10 @@ final class _AgreementBottomSheetState extends State<_AgreementBottomSheet> {
             backgroundColor: AppColors.primary.withValues(
               alpha: _agreeAll ? 1 : 0.5,
             ),
+            onTap: () {
+              final AuthBloc bloc = context.read<AuthBloc>();
+              bloc.add(const UpdateAllAgreementEvent());
+            },
           ),
           SizedBox(height: bottomPadding),
         ],
