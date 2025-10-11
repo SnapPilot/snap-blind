@@ -7,7 +7,7 @@ final class UserProfileEntity {
     required this.intro,
     required this.gender,
     required this.photoUrl,
-    required this.birthDate,
+    this.birthDate,
   });
 
   final String userUid;
@@ -15,14 +15,16 @@ final class UserProfileEntity {
   final String intro;
   final Gender gender;
   final String photoUrl;
-  final DateTime birthDate;
+  final DateTime? birthDate;
 
   int get age {
-    final now = DateTime.now();
-    int age = now.year - birthDate.year;
+    if (birthDate == null) return 0;
 
-    if (now.month < birthDate.month ||
-        (now.month == birthDate.month && now.day < birthDate.day)) {
+    final now = DateTime.now();
+    int age = now.year - birthDate!.year;
+
+    if (now.month < birthDate!.month ||
+        (now.month == birthDate!.month && now.day < birthDate!.day)) {
       age--;
     }
     return age;

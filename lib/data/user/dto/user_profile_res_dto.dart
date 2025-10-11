@@ -9,7 +9,7 @@ final class UserProfileResDto {
     required this.intro,
     required this.gender,
     required this.photoUrl,
-    required this.birthDate,
+    this.birthDate,
   });
 
   final String userUid;
@@ -17,7 +17,7 @@ final class UserProfileResDto {
   final String intro;
   final Gender gender;
   final String photoUrl;
-  final DateTime birthDate;
+  final DateTime? birthDate;
 
   factory UserProfileResDto.fromJson(Json json) {
     return UserProfileResDto(
@@ -26,7 +26,10 @@ final class UserProfileResDto {
       intro: json['intro'] ?? '',
       gender: Gender.fromCode(json['gender']),
       photoUrl: json['photo_url'],
-      birthDate: DateTime.parse(json['birth_date']),
+      birthDate:
+          json['birth_date'] != null
+              ? DateTime.parse(json['birth_date'])
+              : null,
     );
   }
 
