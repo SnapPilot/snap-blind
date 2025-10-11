@@ -12,8 +12,10 @@ import 'package:snap_blind/presenter/const/asset_const.dart';
 import 'package:snap_blind/presenter/theme/app_colors.dart';
 import 'package:snap_blind/presenter/theme/app_text_style.dart';
 import 'package:snap_blind/presenter/widget/admin_mode_dialog.dart';
+import 'package:snap_blind/presenter/widget/radio_button.dart';
 
 part 'widget/admin_login_screen.dart';
+part 'widget/agreement_bottom_sheet.dart';
 part 'widget/kakao_login_btn.dart';
 part 'widget/login_app_logo_area.dart';
 part 'widget/login_scaffold.dart';
@@ -43,6 +45,11 @@ final class LoginScreen extends BaseScreen<AuthBloc, AuthState> {
           authTokenEntity: state.authTokenEntity!,
         ),
       );
+      return;
+    }
+
+    if (state is AgreementRequiredState) {
+      const _AgreementBottomSheet().show(context);
     }
   }
 
