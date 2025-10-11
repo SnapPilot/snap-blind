@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 abstract final class PlatformUtils {
   /// Android
@@ -37,4 +38,10 @@ abstract final class PlatformUtils {
   }
 
   static bool get isMobile => isIos || isAndroid;
+
+  static void launch(Uri url) async {
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
+  }
 }

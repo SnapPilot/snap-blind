@@ -87,7 +87,13 @@ final class _AgreementBottomSheetState extends State<_AgreementBottomSheet> {
               _agreeTerms = value;
               _syncAllFromItems();
             },
-            onTap: () {},
+            onTap: () {
+              PlatformUtils.launch(
+                Uri.parse(
+                  'https://sunny-fireman-0b1.notion.site/Famila-Terms-of-Service-288b7d9285398028bc35e60fe73a7f59',
+                ),
+              );
+            },
           ),
           CheckListTile(
             label: StringConst.privacyPolicy,
@@ -95,6 +101,13 @@ final class _AgreementBottomSheetState extends State<_AgreementBottomSheet> {
             onChanged: (value) {
               _agreePrivacy = value;
               _syncAllFromItems();
+            },
+            onTap: () {
+              PlatformUtils.launch(
+                Uri.parse(
+                  'https://sunny-fireman-0b1.notion.site/Famila-Privacy-Policy-288b7d92853980fcbe17c141c0453a7b?source=copy_link',
+                ),
+              );
             },
           ),
           CheckListTile(
